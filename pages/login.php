@@ -31,12 +31,12 @@ if (isset($_POST['login'])) {
                 //if admin (1) -> isAdmin = true
                 //route to admin home page
                 $_SESSION['adminLoggedIn'] = True;
-                header("Location: adminHome.php");
+                header("Location: ./admin/adminHome.php");
             } else {
                 //if normal user (0) -> isAdmin = false
                 //route to user home page
                 $_SESSION['userLoggedIn'] = True;
-                header("Location: userHome.php");
+                header("Location: ./user/userHome.php");
             }
         } else {
             //invalid user details, nothing returned
