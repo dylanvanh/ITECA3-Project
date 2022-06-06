@@ -1,5 +1,5 @@
 <?php
-include('connection.php');
+include('../../connection.php');
 
 //login form submitted
 if (isset($_POST['login'])) {
@@ -31,12 +31,12 @@ if (isset($_POST['login'])) {
                 //if admin (1) -> isAdmin = true
                 //route to admin home page
                 $_SESSION['adminLoggedIn'] = True;
-                header("Location: ./admin/adminHome.php");
+                header("Location: ../../admin/home/adminHome.php");
             } else {
                 //if normal user (0) -> isAdmin = false
                 //route to user home page
                 $_SESSION['userLoggedIn'] = True;
-                header("Location: ./user/userHome.php");
+                header("Location: ../../user/home/userHome.php");
             }
         } else {
             //invalid user details, nothing returned
@@ -57,11 +57,12 @@ if (isset($_POST['login'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
+    <script defer src="loginScript.js"></script>
 </head>
 
 <body>
     <h1>Login<h1>
-            <form method="post" action="login.php">
+            <form method="post" action="login.php" name="form">
                 <label for="email">Email -</label>
                 <input type="email" name="email" required>
                 <br>

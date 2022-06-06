@@ -1,6 +1,6 @@
 <?php
 
-include('connection.php');
+include('../../connection.php');
 
 
 //Sign up form submitted
@@ -40,7 +40,7 @@ if (isset($_POST['signUp'])) {
 
 
             $_SESSION['userLoggedIn'] = True;
-            header("Location: userHome.php");
+            header("Location: ../../user/home/userHome.php");
 
 
             echo 'created!';
