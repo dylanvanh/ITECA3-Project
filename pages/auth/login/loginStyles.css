@@ -1,0 +1,20 @@
+.title {
+    font-size: 50px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.signupPageLink>p {
+    font-size: 5px;
+}
+
