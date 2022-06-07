@@ -10,7 +10,7 @@ if (isset($_POST['login'])) {
 
 
     //fetches existing userdata if exists
-    $fetchUserDataQuery = "SELECT * FROM user WHERE '$email'= email AND '$password' = password LIMIT 1";
+    $fetchUserDataQuery = "SELECT * FROM Users WHERE '$email'= email AND '$password' = password LIMIT 1";
 
     $queryResults =  mysqli_query($conn, $fetchUserDataQuery);
 
@@ -80,4 +80,3 @@ if (isset($_POST['login'])) {
 </body>
 
 </html>
-

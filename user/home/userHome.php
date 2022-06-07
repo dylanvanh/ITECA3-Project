@@ -4,13 +4,14 @@ session_start();
 
 //if user not logged in -> route to login
 if (!isset($_SESSION['userLoggedIn'])) {
-    header('location: ../login.php');
+    header('location: ../../login/login.php');
 }
 ?>
 
 
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
