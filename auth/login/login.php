@@ -59,14 +59,14 @@ if (isset($_POST['login'])) {
 
   <title>Login!</title>
 </head>
-
+ 
 <body>
 
   <nav class="navbar navbar-expand-sm bg-light navbar-light">
-    <div class="container-fluid">
-      <ul class="navbar-nav ">
+    <div class="container justify-content-center">
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../../index.html">Home</a>
+          <a class="nav-link" href="../../index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="#">Login</a>
@@ -82,23 +82,22 @@ if (isset($_POST['login'])) {
 
 
   <div class="container py-5 h-100">
-
     <form method="post" action="login.php" name="form">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card bg-dark text-white" style="border-radius: 3rem;">
+          <div class="card bg-primary bg-gradient text-white" style="border-radius: 3rem;">
             <div class="card-body p-5 text-center">
 
               <div class="-5 mt-md-4 pb-5">
 
-                <h2 class="fw-bold mb-4 text-uppercase">Login</h2>
+                <h2 class="fw-bold mb-4">Login</h2>
 
-                <div class="form-outline form-white mb-4">
+                <div class="mb-4">
                   <label class="form-label" for="email">Email</label>
                   <input type="email" name="email" class="form-control form-control-lg" />
                 </div>
 
-                <div class="form-outline form-white mb-4">
+                <div class="mb-4">
                   <label class="form-label" for="password">Password</label>
                   <input type="password" name="password" class="form-control form-control-lg" />
                 </div>
@@ -111,7 +110,6 @@ if (isset($_POST['login'])) {
                 <p class="mb-0">Don't have an account? <a href="../signup/signup.php" class="text-white-50 fw-bold">Sign Up</a>
                 </p>
               </div>
-
             </div>
           </div>
         </div>
