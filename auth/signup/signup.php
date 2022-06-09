@@ -11,7 +11,7 @@ if (isset($_POST['signUp'])) {
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
     //query for checking if email already exists
-    $checkForExistingUserQuery = "SELECT * FROM user WHERE email = '$email' LIMIT 1";
+    $checkForExistingUserQuery = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
 
     //query the db
     $queryResults =  mysqli_query($conn, $checkForExistingUserQuery);
@@ -23,7 +23,7 @@ if (isset($_POST['signUp'])) {
         //create insert query
         //signup is for normal user 
         // -> isAdmin = FALSE
-        $insertUserQuery = "INSERT INTO user (name,email,password,phoneNumber,isAdmin) 
+        $insertUserQuery = "INSERT INTO users (name,email,password,phoneNumber,isAdmin) 
         VALUES ('$name','$email','$password','$phoneNumber',FALSE)";
 
         //execute insert query
@@ -94,7 +94,7 @@ if (isset($_POST['signUp'])) {
         </nav>
 
         <div class="container py-5 h-100">
-            <form method="post" action="login.php" name="form">
+            <form method="post" action="signup.php" name="form">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                         <div class="card bg-primary bg-gradient text-white" style="border-radius: 3rem;">
@@ -106,7 +106,7 @@ if (isset($_POST['signUp'])) {
 
                                     <div class="mb-4">
                                         <label class="form-label" for="name">Name</label>
-                                        <input type="text" name="na,e" class="form-control form-control-lg" />
+                                        <input type="text" name="name" class="form-control form-control-lg" />
                                     </div>
 
 
@@ -127,7 +127,7 @@ if (isset($_POST['signUp'])) {
                                     </div>
 
 
-                                    <button class="btn btn-outline-light btn-lg px-5" type="submit" name="login">Sign Up</button>
+                                    <button class="btn btn-outline-light btn-lg px-5" type="submit" name="signUp">Sign Up</button>
 
                                 </div>
 
@@ -148,39 +148,3 @@ if (isset($_POST['signUp'])) {
 </body>
 
 </html>
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <h1>Create Account<h1>
-            <form method="post" action="signup.php">
-                <label for="name">Name -</label>
-                <input type="text" name="name" required>
-                <br>
-                <label for="email">Email -</label>
-                <input type="text" name="email" required>
-                <br>
-                <label for="phoneNumber">Phone Number -</label>
-                <input type="text" name="phoneNumber" required>
-                <br>
-                <label for="password">Password -</label>
-                <input type="text" name="password" required>
-                <br>
-                <button type="subit" name="signUp">Submit</button>
-                <br>
-                <p>Have an account?<a href="login.php">Login</a></p>
-            </form>
-</body>
-
-</html> -->
