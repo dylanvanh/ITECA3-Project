@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
       $_SESSION['email'] = $row['email'];
       $_SESSION['userPhoneNumber'] = $row['phoneNumber'];
       $_SESSION['userIsAdmin'] = $row['isAdmin'];
-
+ 
       if ($row['isAdmin'] == 1) {
         //if admin (1) -> isAdmin = true
         //route to admin home page
