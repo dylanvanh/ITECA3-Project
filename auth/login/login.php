@@ -26,7 +26,7 @@ if (isset($_POST['login'])) {
       $_SESSION['email'] = $row['email'];
       $_SESSION['userPhoneNumber'] = $row['phoneNumber'];
       $_SESSION['userIsAdmin'] = $row['isAdmin'];
- 
+
       if ($row['isAdmin'] == 1) {
         //if admin (1) -> isAdmin = true
         //route to admin home page
@@ -85,7 +85,7 @@ if (isset($_POST['login'])) {
     <form method="post" action="login.php" name="form">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card bg-primary bg-gradient text-white" style="border-radius: 3rem;">
+          <div class="card bg-dark bg-gradient text-white" style="border-radius: 3rem;">
             <div class="card-body p-5 text-center">
 
               <div class="-5 mt-md-4 pb-5">
