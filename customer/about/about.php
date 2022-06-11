@@ -13,18 +13,47 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand">QuickSilver Swimming</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="../shop/shop.php">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand " href="#">QuickSilver Swimming</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="../../index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="customer/orders/orders.php">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">About</a>
+                    </li>
                 </ul>
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi-cart-fill"></i>
-                    <a href="../cart/cart.php">Cart</a>
-                </button>
+
+                <div class="d-flex px-5">
+                    <?php if (empty($_SESSION['userLoggedIn'])) : ?>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item px-3">
+                                <a class="nav-link" aria-current="page" href="./auth/login/login.php">Login</a>
+                            </li>
+                        </ul>
+                    <?php endif; ?>
+                    <?php if (!empty($_SESSION['userLoggedIn'])) : ?>
+                        <form action="index.php" method="post" name="form">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item px-3">
+                                    <button class="nav-link btn btn-outline-danger" type="submit" name="logout">Logout</button>
+                                </li>
+                            </ul>
+                        </form>
+                    <?php endif; ?>
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="bi-cart-fill"></i>
+                        Cart
+                    </button>
+                </div>
             </div>
         </div>
     </nav>

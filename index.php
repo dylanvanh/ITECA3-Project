@@ -1,5 +1,5 @@
 <?php
-session_start();
+include('server.php');
 
 
 //login form submitted
@@ -24,6 +24,34 @@ if (isset($_POST['logout'])) {
 </head>
 
 <body>
+    <div class="modal fade" id="formModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="formModalLabel">New message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="index.php" name="form">
+                        <div class="mb-3">
+                            <label for="email" class="col-form-label">Email:</label>
+                            <input type="text" class="form-control" name="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="col-form-label">Password:</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Create Account</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="login" class="btn btn-primary">Login</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand " href="#">QuickSilver Swimming</a>
@@ -47,7 +75,8 @@ if (isset($_POST['logout'])) {
                     <?php if (empty($_SESSION['userLoggedIn'])) : ?>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item px-3">
-                                <a class="nav-link" aria-current="page" href="./auth/login/login.php">Login</a>
+                                <button type="button" class="nav-link btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal" data-bs-whatever="@mdo">Login</button>
+                                <!-- <a class="nav-link" aria-current="page" href="./auth/login/login.php">Login</a> -->
                             </li>
                         </ul>
                     <?php endif; ?>
@@ -68,29 +97,6 @@ if (isset($_POST['logout'])) {
             </div>
         </div>
     </nav>
-
-
-    <!-- MODAL FOR LOGIN  -->
-
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 
     <div class="shop-items">

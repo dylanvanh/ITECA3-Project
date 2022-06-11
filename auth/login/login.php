@@ -26,6 +26,7 @@ if (isset($_POST['login'])) {
       $_SESSION['email'] = $row['email'];
       $_SESSION['userPhoneNumber'] = $row['phoneNumber'];
       $_SESSION['userIsAdmin'] = $row['isAdmin'];
+      //create empty cart
       $_SESSION['userCart'] = array();
 
       if ($row['isAdmin'] == 1) {
@@ -48,8 +49,9 @@ if (isset($_POST['login'])) {
   }
 }
 
+// 
 ?>
-
+<!-- 
 <!doctype html>
 <html lang="en">
 
@@ -121,4 +123,4 @@ if (isset($_POST['login'])) {
 
 </body>
 
-</html>
+</html> -->
