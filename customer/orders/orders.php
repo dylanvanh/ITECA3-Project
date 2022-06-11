@@ -2,18 +2,7 @@
 
 session_start();
 
-//if user not logged in -> route to shop age 
-if (!isset($_SESSION['userLoggedIn'])) {
-    header('location: ../../shop/shop.php');
-}else{
-    //fetch customer order data from the database
-}
 ?>
-
-
-
-
-
 <!doctype html>
 <html lang="en">
 

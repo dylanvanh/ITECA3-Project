@@ -37,7 +37,7 @@ if (isset($_POST['login'])) {
         //if normal user (0) -> isAdmin = false
         //route to user home page
         $_SESSION['userLoggedIn'] = True;
-        header("Location: ../../customer/shop/shop.php");
+        header("Location: ../../index.php");
       }
     } else {
       //invalid user details, nothing returned
