@@ -26,6 +26,7 @@ if (isset($_POST['login'])) {
       $_SESSION['email'] = $row['email'];
       $_SESSION['userPhoneNumber'] = $row['phoneNumber'];
       $_SESSION['userIsAdmin'] = $row['isAdmin'];
+      $_SESSION['userCart'] = array();
 
       if ($row['isAdmin'] == 1) {
         //if admin (1) -> isAdmin = true
@@ -36,7 +37,7 @@ if (isset($_POST['login'])) {
         //if normal user (0) -> isAdmin = false
         //route to user home page
         $_SESSION['userLoggedIn'] = True;
-        header("Location: ../../user/home/userHome.php");
+        header("Location: ../../customer/shop/shop.php");
       }
     } else {
       //invalid user details, nothing returned
@@ -66,7 +67,7 @@ if (isset($_POST['login'])) {
     <div class="container justify-content-center">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../../index.php">Home</a>
+          <a class="nav-link" href="../../index.php">Shop</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="#">Login</a>

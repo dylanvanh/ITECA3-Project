@@ -40,7 +40,7 @@ if (isset($_POST['signUp'])) {
 
 
             $_SESSION['userLoggedIn'] = True;
-            header("Location: ../../user/home/userHome.php");
+            header("Location: ../../user/shop/shop.php");
 
 
             echo 'created!';
@@ -70,13 +70,13 @@ if (isset($_POST['signUp'])) {
             <div class="container justify-content-center">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="../../index.php">Home</a>
+                        <a class="nav-link" href="../../index.php">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../login/login.php">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../signup/signup.php">SignUp</a>
+                        <a class="nav-link active" href="#">SignUp</a>
                     </li>
                 </ul>
             </div>
