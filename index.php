@@ -2,6 +2,15 @@
 include('session.php');
 $_SESSION['activePage'] = 'index';
 include('userNavbar.php');
+
+//display all the products
+//to each card add a drop down menu for size (S,M,L,XL)
+//to each card add a drop down menu for quantity
+//to each card add a button for add to cart
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -19,17 +28,15 @@ include('userNavbar.php');
 </head>
 
 <body>
-    <div class="shop-items">
-        <div class="card" style="width: 18rem;">
-            <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">R400</h5>
-                <p class="card-text">Product name</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+
+
+    <div class="container p-5 m-5 border">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <?php
+            displayProducts($conn);
+            ?>
         </div>
     </div>
-
 
     <footer class="py-5 bg-dark">
         <div class="container">
