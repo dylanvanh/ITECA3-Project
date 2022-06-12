@@ -24,15 +24,16 @@ if (isset($_POST['logout'])) {
 </head>
 
 <body>
-    <div class="modal fade" id="formModal" tabindex="-1" aria-hidden="true">
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="formModalLabel">New message</h5>
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="index.php" name="form">
+                    <form method="post" action="index.php" name="loginForm">
                         <div class="mb-3">
                             <label for="email" class="col-form-label">Email:</label>
                             <input type="text" class="form-control" name="email">
@@ -43,7 +44,8 @@ if (isset($_POST['logout'])) {
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Create Account</button>
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Create Account</button> -->
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-whatever="@mdo">Create Account</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" name="login" class="btn btn-primary">Login</button>
                 </div>
@@ -51,6 +53,45 @@ if (isset($_POST['logout'])) {
             </div>
         </div>
     </div>
+
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">Create Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="index.php" name="signupForm">
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="name" class="form-control" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="col-form-label">Email:</label>
+                            <input type="email" class="form-control" name="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="col-form-label">Password:</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="col-form-label">Phone Number:</label>
+                            <input type="text" class="form-control" name="phoneNumber">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Login</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="signup" class="btn btn-primary">Signup</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -75,8 +116,7 @@ if (isset($_POST['logout'])) {
                     <?php if (empty($_SESSION['userLoggedIn'])) : ?>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item px-3">
-                                <button type="button" class="nav-link btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal" data-bs-whatever="@mdo">Login</button>
-                                <!-- <a class="nav-link" aria-current="page" href="./auth/login/login.php">Login</a> -->
+                                <button type="button" class="nav-link btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
                             </li>
                         </ul>
                     <?php endif; ?>
@@ -99,7 +139,7 @@ if (isset($_POST['logout'])) {
     </nav>
 
 
-    <div class="shop-items">
+    <div class="shop-items">    
         <div class="card" style="width: 18rem;">
             <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
             <div class="card-body">

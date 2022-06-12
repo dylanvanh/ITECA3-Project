@@ -4,7 +4,6 @@ include('connection.php');
 //login form submitted
 if (isset($_POST['login'])) {
 
-    print('workin!');
     //get user data from fields
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
@@ -50,7 +49,7 @@ if (isset($_POST['login'])) {
     }
 }
 
-if (isset($_POST['signUp'])) {
+if (isset($_POST['signup'])) {
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $phoneNumber = mysqli_real_escape_string($conn, $_POST['phoneNumber']);
