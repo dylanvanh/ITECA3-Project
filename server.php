@@ -42,7 +42,7 @@ if (isset($_POST['login'])) {
             }
         } else {
             //invalid user details, nothing returned
-            echo "<p style='color:red'>Invalid User Details</p>";
+            echo "<p style='chaolor:red'>Invalid User Details</p>";
         }
     } else {
         echo 'Error logging in , server side problem';

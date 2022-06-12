@@ -44,7 +44,6 @@ if (isset($_POST['logout'])) {
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Create Account</button> -->
                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-whatever="@mdo">Create Account</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" name="login" class="btn btn-primary">Login</button>
@@ -82,7 +81,7 @@ if (isset($_POST['logout'])) {
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Login</button>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-whatever="@mdo">Login</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" name="signup" class="btn btn-primary">Signup</button>
                 </div>
@@ -139,7 +138,7 @@ if (isset($_POST['logout'])) {
     </nav>
 
 
-    <div class="shop-items">    
+    <div class="shop-items">
         <div class="card" style="width: 18rem;">
             <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
             <div class="card-body">
