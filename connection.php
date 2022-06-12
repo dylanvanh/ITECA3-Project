@@ -1,6 +1,6 @@
 <!-- handles the connection to the MySQL database -->
 <?php 
-session_start();
+include('session.php');
 
 //ip hosted on (127.0.0.1)
 $hostname = "localhost";
@@ -18,7 +18,7 @@ $conn = mysqli_connect($hostname, $db_username, $db_password, $db_name);
 if (!$conn) {
 	die("Failed to connect to db <br> ");
 } else {
-	echo "Successfully connected to db <br>";
+	// echo "Successfully connected to db <br>";
 }
 
 ?>

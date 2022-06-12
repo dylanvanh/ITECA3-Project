@@ -1,8 +1,18 @@
 <?php
 
-session_start();
+//if customer not logged in -> route to home page
+if (!isset($_SESSION['userLoggedIn'])) {
+    header('location: /ITECA3-Project/index.php');
+}
+
+
+include('../../session.php');
+$_SESSION['activePage'] = 'orders';
+include('../../userNavbar.php');
+
 
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -15,26 +25,6 @@ session_start();
 </head>
 
 <body>
-    <h1>Orders</h1>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand">QuickSilver Swimming</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="../shop/shop.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../about/about.php">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../about/about.php">Order</a></li>
-                </ul>
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi-cart-fill">
-                        << /i>
-                            <a href="#">Cart</a>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
