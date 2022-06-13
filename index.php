@@ -33,7 +33,7 @@ include('userNavbar.php');
     <a class="btn btn-primary" aria-current="page" href="/ITECA3-Project/test.php">TEST</a>
 
 
-    <div class="container p-5 m-5 border">
+    <div class="container py-5 my-5 mx-auto border">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <?php
             $sql = 'SELECT * FROM products';
