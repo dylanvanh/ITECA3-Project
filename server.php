@@ -98,38 +98,3 @@ if (isset($_POST['signup'])) {
     }
 }
 
-
-//requires connection from connection.php
-function displayProducts($conn)
-{
-    //query table name
-    $productsTable = 'products';
-
-    //Fetch products data
-    $fetchProductsQuery = "SELECT * FROM $productsTable";
-
-    $queryResults =  mysqli_query($conn, $fetchProductsQuery);
-
-    //if query was a success
-    if ($queryResults) {
-        if (mysqli_num_rows($queryResults) > 0) {
-            while ($row = mysqli_fetch_assoc($queryResults)) {
-                // echo "<div class='product'><h1>$row[name]</h1></div>";
-                echo "<div class='col'>
-                <div class='card'>
-                    <img src='https://picsum.photos/300/200' class='card-img-top' alt='...'>
-                    <div class='card-body'>
-                        <h5 class='card-title'>$row[name]</h5>
-                        <p class='card-text'>This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                </div>
-            </div>";
-            }
-        } else {
-            // No products found   
-            echo "<p style='chaolor:red'>No products found!</p>";
-        }
-    } else {
-        echo 'Error logging in , server side problem';
-    }
-}

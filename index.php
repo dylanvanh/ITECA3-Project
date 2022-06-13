@@ -30,10 +30,64 @@ include('userNavbar.php');
 <body>
 
 
+    <a class="btn btn-primary" aria-current="page" href="/ITECA3-Project/test.php">TEST</a>
+
+
     <div class="container p-5 m-5 border">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <?php
-            displayProducts($conn);
+            $sql = 'SELECT * FROM products';
+            $result = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_array($result)) {
+            ?>
+                <!--Product modal -->
+                <div class='modal fade' id='productModal<?php echo $row['id'] ?>' tabindex='-1' aria-hidden='true'>
+                    <div class='modal-dialog'>
+                        <div class='modal-content'>
+                            <div class='modal-header'>
+                                <h5 class='modal-title' id='productModalLabel'>Product Details</h5>
+                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                            </div>
+                            <div class='modal-body'>
+                                <form method='post' action='index.php' name='productForm'>
+                                    <h3>Name : <?php echo $row['name']; ?></h3>
+                                    <h3>Price: <?php echo $row['price']; ?></h3>
+                                    <h3>ID : <?php echo $row['id']; ?></h3>
+                                    <!-- <div class='mb-3'>
+                                        <label for='email' class='col-form-label'>Email:</label>
+                                        <input type='text' class='form-control' name='email'>
+                                    </div>
+                                    <div class='mb-3'>
+                                        <label for='password' class='col-form-label'>Password:</label>
+                                        <input type='password' class='form-control' name='password'>
+                                    </div> -->
+                            </div>
+                            <div class='modal-footer'>
+                                <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card Display -->
+                <div class='col'>
+                    <div class='card'>
+                        <img src='https://picsum.photos/300/200' class='card-img-top' alt='...'>
+                        <div class='card-body'>
+                            <h5 class='card-title'><?php echo $row['name'] ?></h5>
+                            <p class='card-text'><?php echo $row['price'] ?></p>
+                            <div class='d-flex justify-content-between options'>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal<?php echo $row["id"] ?>" data-bs-whatever="@mdo">
+                                    <i class='bi-info-circle-fill'></i>
+                                    View product info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
             ?>
         </div>
     </div>
