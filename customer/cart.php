@@ -1,3 +1,14 @@
+<?php
+include('../session.php');
+$_SESSION['activePage'] = 'cart';
+include('../userNavbar.php');
+
+$cart = unserialize($_SESSION['cart']);
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,32 +24,13 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand">QuickSilver Swimming</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="../shop/shop.php">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../about/about.php">About</a></li>
-                </ul>
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi-cart-fill">
-                        << /i>
-                            <a href="#">Cart</a>
-                </button>
-            </div>
-        </div>
-    </nav>
-
     <section class="h-100 h-custom" style="background-color: #eee;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col">
                     <div class="card">
                         <div class="card-body p-4">
-
                             <div class="row">
-
                                 <div class="col-lg-7">
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <div>
@@ -46,6 +38,55 @@
                                             <p class="mb-0">You have 4 items in your cart</p>
                                         </div>
                                     </div>
+
+                                    <?php
+                                    for ($i = 0; $i < count($cart); $i++) {
+                                    ?>
+                                        <div class="card mb-3" id="cartItem <?php echo $cart[$i]->id ?>">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <div>
+                                                            <img src="<?php echo $cart[$i]->imageUrl ?>" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                        </div>
+                                                        <div class="ms-3">
+                                                            <h5><?php echo $cart[$i]->name ?></h5>
+                                                            <p class="small mb-0"><?php echo $cart[$i]->size ?></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row align-items-center">
+                                                        <div style="width: 50px;">
+                                                            <h5 class="fw-normal mb-0"><?php echo $cart[$i]->quantity ?></h5>
+                                                        </div>
+                                                        <label for="amount">Qty</label>
+
+                                                        <select name="amount" id="quantity">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="9">10</option>
+                                                        </select>
+
+                                                        <button type='submit' name="addToCart" class='btn btn-primary'>Update Quantity</button>
+
+                                                        <div style="width: 80px;">
+                                                            <h5 class="mb-0">R<?php echo $cart[$i]->price ?></h5>
+                                                        </div>
+                                                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php
+                                    }
+                                    ?>
 
                                     <div class="card mb-3">
                                         <div class="card-body">
@@ -72,7 +113,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="card mb-3">
+                                    <!-- <div class="card mb-3">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between">
                                                 <div class="d-flex flex-row align-items-center">
@@ -97,7 +138,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="card mb-3">
+                                     <div class="card mb-3">
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between">
                                                 <div class="d-flex flex-row align-items-center">
@@ -145,7 +186,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
 

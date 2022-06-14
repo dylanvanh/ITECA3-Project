@@ -12,16 +12,16 @@ class CartItem
     public $price;
     public $quantity;
     public $description;
-    public $image;
+    public $imageUrl;
     public $size;
 
-    function __construct($id, $name, $price, $quantity, $image, $size)
+    function __construct($id, $name, $price, $quantity, $imageUrl, $size)
     {
         $this->id = $id;
         $this->name = $name;
         $this->price = $price;
         $this->quantity = $quantity;
-        $this->image = $image;
+        $this->imageUrl = $imageUrl;
         $this->size = $size;
     }
 }
@@ -144,8 +144,6 @@ if (isset($_POST['signup'])) {
         echo 'email already exists';
     }
 }
-
-
 
 //productModal submit button 
 if (isset($_POST['addToCart'])) {

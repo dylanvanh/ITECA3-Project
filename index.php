@@ -14,7 +14,7 @@ for ($i = 0; $i < count($cart); $i++) {
     echo "<br>";
     echo 'quantity = ', $cart[$i]->quantity;
     echo "<br>";
-    echo 'image = ', $cart[$i]->image;
+    echo 'image = ', $cart[$i]->imageUrl;
     echo "<br>";
     echo 'size = ', $cart[$i]->size;
     echo "<br>";
