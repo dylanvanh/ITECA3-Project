@@ -6,23 +6,22 @@ include('userNavbar.php');
 $cart = unserialize($_SESSION['cart']);
 
 for ($i = 0; $i < count($cart); $i++) {
-    echo $cart[$i]->id;
+    echo 'id = ', $cart[$i]->id;
     echo "<br>";
-    echo $cart[$i]->name;
+    echo 'name = ', $cart[$i]->name;
     echo "<br>";
-    echo $cart[$i]->price;
+    echo 'price = ', $cart[$i]->price;
     echo "<br>";
-    echo $cart[$i]->quantity;
+    echo 'quantity = ', $cart[$i]->quantity;
     echo "<br>";
-    echo $cart[$i]->image;
+    echo 'image = ', $cart[$i]->image;
     echo "<br>";
-    echo $cart[$i]->size;
+    echo 'size = ', $cart[$i]->size;
     echo "<br>";
     echo "---------------";
     echo "<br>";
 }
 
-echo 'COUNT = ',$_SESSION['count'];
 
 //display all the products
 //to each card add a drop down menu for size (S,M,L,XL)
@@ -52,6 +51,7 @@ echo 'COUNT = ',$_SESSION['count'];
 </head>
 
 <body>
+
     <div class="container py-5 my-5 mx-auto border">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <?php
@@ -60,10 +60,6 @@ echo 'COUNT = ',$_SESSION['count'];
             while ($row = mysqli_fetch_array($result)) {
             ?>
 
-                <!-- 
-                    Size dropdown -> default to nothing
-                    Quantity input -> default to 1 
-                -->
                 <!--Product modal -->
                 <div class='modal fade' id='productModal<?php echo $row['id'] ?>' tabindex='-1' aria-hidden='true'>
                     <div class='modal-dialog'>
@@ -74,16 +70,8 @@ echo 'COUNT = ',$_SESSION['count'];
                             </div>
                             <div class='modal-body'>
                                 <form method="post" name="addToCartForm" action="index.php">
-                                    <?php
-                                    //save latest viewed product details , for adding to the cart
-                                    //saves having to query the db the db again when adding to cart
-                                    $_SESSION['lastProductId'] = $row['id'];
-                                    $_SESSION['lastProductName'] = $row['name'];
-                                    $_SESSION['lastProductPrice'] = $row['price'];
-                                    $_SESSION['lastProductImageUrl'] = $row['imageUrl'];
-                                    $_SESSION['lastProductDescription'] = $row['description'];
-                                    ?>
 
+                                    <!-- Item info -->
                                     <div class="container d-flex">
                                         <div class="left mr-5">
                                             <h3>Name:</h3>
@@ -100,10 +88,13 @@ echo 'COUNT = ',$_SESSION['count'];
                                     </div>
                                     <hr class="border-2 border-top border-dark">
 
+                                    <!-- Size radio buttons -->
                                     <p>Select a size</p>
                                     <div class="d-flex">
+                                        <input type="hidden" name="product_price" value="<?php echo $fetch_product['price']; ?>">
+
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio1" name="size" value="small">Small
+                                            <input type="radio" class="form-check-input" id="radio1" name="size" value="small" required>Small
                                             <label class="form-check-label" for="radio1"></label>
                                         </div>
                                         <div class="form-check">
@@ -115,9 +106,14 @@ echo 'COUNT = ',$_SESSION['count'];
                                             <label class="form-check-label" for="radio2"></label>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+                                    <input type="hidden" name="name" value="<?php echo $row['name'] ?>">
+                                    <input type="hidden" name="price" value="<?php echo $row['price'] ?>">
+                                    <input type="hidden" name="description" value="<?php echo $row['description'] ?>">
+                                    <input type="hidden" name="imageUrl" value="<?php echo $row['imageUrl'] ?>">
                             </div>
                             <div class='modal-footer'>
-                                <button type='submit' name="addToCart" class='btn btn-primary' data-bs-dismiss='modal'>Add to cart</button>
+                                <button type='submit' name="addToCart" class='btn btn-primary'>Add to cart</button>
                             </div>
                             </form>
                         </div>

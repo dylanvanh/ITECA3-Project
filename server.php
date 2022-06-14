@@ -11,6 +11,7 @@ class CartItem
     public $name;
     public $price;
     public $quantity;
+    public $description;
     public $image;
     public $size;
 
@@ -25,101 +26,18 @@ class CartItem
     }
 }
 
-//id,name,price,quantity,image,size
-$cartItem = new CartItem(1, 'test', 123, 1, '/ITECA3-Project/assets/fins.jpg', 's');
-$cartItem2 = new CartItem(2, 'test2', 321, 1, '/ITECA3-Project/assets/shorts.jpg', 'm');
-$cartItem3 = new CartItem(1, 'test', 123, 1, '/ITECA3-Project/assets/fins.jpg', 's');
-
-
 
 //checks if cart exists
-if (isset($_SESSION['cart'])) {
-    //session cart variable already exists
-
-    //check if already in cart etc..
-    echo "cart already exists!";
-
-
-    //checks for matching item in existing cart
-    //matching item = same id , same size    $matchFound = false;
-    // for ($i = 0; $i < count($cart); $i++) {
-    //     echo $cart[$i]->id;
-    //     echo "<br>";
-    //     echo $cart[$i]->name;
-    //     echo "<br>";
-    //     echo $cart[$i]->price;
-    //     echo "<br>";
-    //     echo $cart[$i]->quantity;
-    //     echo "<br>";
-    //     echo $cart[$i]->image;
-    //     echo "<br>";
-    //     echo $cart[$i]->size;
-    //     echo "<br>";
-
-    //     //if it finds the cart , break out of the loop
-    //     if (($cart[$i]->id == $cartItem->id) && ($cart[$i]->size == $cartItem->size)) {
-    //         echo "found match";
-    //         //increase quantity by 1
-    //         $cart[$i]->quantity += 1;
-    //         $matchFound = true;
-    //         break;
-    //     }
-    // }
-
-    // //if no matching item was found in cart , add product to cart
-    // if (!$matchFound) {
-    //     $cart[] = $cartItem3;
-    // }
-
-    // //override old session cart details with new cart details
-    // $_SESSION['cart'] = serialize($cart);
-} else {
-    //session cart variable doesnt exist
+if (!isset($_SESSION['cart'])) {
+    //cart doesnt exist
 
     //create empty cart 
     $cart = [];
 
-    //dummy data added to cart
-    $cart[] = $cartItem;
-    $cart[] = $cartItem2;
-
     //override old session cart details with new cart details
     $_SESSION['cart'] = serialize($cart);
-
-    //checks for matching item
-    //matching item = same id , same size
-    // $matchFound = false;
-    // for ($i = 0; $i < count($cart); $i++) {
-    //     echo $cart[$i]->id;
-    //     echo "<br>";
-    //     echo $cart[$i]->name;
-    //     echo "<br>";
-    //     echo $cart[$i]->price;
-    //     echo "<br>";
-    //     echo $cart[$i]->quantity;
-    //     echo "<br>";
-    //     echo $cart[$i]->image;
-    //     echo "<br>";
-    //     echo $cart[$i]->size;
-    //     echo "<br>";
-
-    //     //if it finds the cart , break out of the loop
-    //     if (($cart[$i]->id == $cartItem->id) && ($cart[$i]->size == $cartItem->size)) {
-    //         echo "found match";
-    //         //increase quantity by 1
-    //         $cart[$i]->quantity += 1;
-    //         $matchFound = true;
-    //         break;
-    //     }
-    // }
-
-    //if no matching item was found in cart , add product to cart
-    // if (!$matchFound) {
-    //     $cart[] = $cartItem3;
-    // }
-
-
 }
+
 
 //validate data function
 function validateData($data)
@@ -232,64 +150,48 @@ if (isset($_POST['signup'])) {
 //productModal submit button 
 if (isset($_POST['addToCart'])) {
 
-    // $_SESSION['count'] = 1;
-
-    // //get user data from fields
-    // // $email = mysqli_real_escape_string($conn, $_POST['email']);
-    // // $password = mysqli_real_escape_string($conn, $_POST['password']);
-
-
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $description = $_POST['description'];
+    $imageUrl = $_POST['imageUrl'];
     $size = $_POST['size'];
 
-    $productId = $_SESSION['lastProductId'];
-    $productName = $_SESSION['lastProductName'];
-    $productPrice = $_SESSION['lastProductPrice'];
-    $productImageUrl = $_SESSION['lastProductImageUrl'];
-    $productDescription = $_SESSION['lastProductDescription'];
-
-
-
-    $newCartItem = new CartItem($productId, $productName, $productPrice, 1, $productImageUrl, $size);
 
     //retrieve existing cart data
     $cart = unserialize($_SESSION['cart']);
-    //add new item to existing cart data
-    $cart[] = $newCartItem;
 
-    //update session variable with new cart data
+    //reset
+    $matchFound = false;
+
+    // checks for matching item in existing cart
+    // matching item = (same id & same size ) already in cart
+    for ($i = 0; $i < count($cart); $i++) {
+        //if it finds a matching cartItem 
+        // echo 'id = ',gettype($cart[$i]) . "<br>";
+
+        if (($cart[$i]->id == $id) && ($cart[$i]->size == $size)) {
+            $matchFound = true;
+            echo "found match";
+            //increase quantity by 1
+            $cart[$i]->quantity += 1;
+            //end looping
+            break;
+        }
+    }
+
+    //if no matching item was found in cart , add new product to cart
+    if (!$matchFound) {
+        //create new cart item
+        $newCartItem = new CartItem($id, $name, $price, 1, $imageUrl, $size);
+        //add new item to cart variable
+        $cart[] = $newCartItem;
+        //update session cart variable with new cart data
+
+    }
+    //override old session['cart'] details with new details
     $_SESSION['cart'] = serialize($cart);
 
-
-    // // checks for matching item in existing cart
-    // // matching item = same id , same size $matchFound = false;
-    // for ($i = 0; $i < count($cart); $i++) {
-    //     echo $cart[$i]->id;
-    //     echo "<br>";
-    //     echo $cart[$i]->name;
-    //     echo "<br>";
-    //     echo $cart[$i]->price;
-    //     echo "<br>";
-    //     echo $cart[$i]->quantity;
-    //     echo "<br>";
-    //     echo $cart[$i]->image;
-    //     echo "<br>";
-    //     echo $cart[$i]->size;
-    //     echo "<br>";
-
-    //     //if it finds the cart , break out of the loop
-    //     if (($cart[$i]->id == $cartItem->id) && ($cart[$i]->size == $cartItem->size)) {
-    //         echo "found match";
-    //         //increase quantity by 1
-    //         $cart[$i]->quantity += 1;
-    //         $matchFound = true;
-    //         break;
-    //     }
-    // }
-
-    // //if no matching item was found in cart , add product to cart
-    // if (!$matchFound) {
-    //     $cart[] = $cartItem3;
-    // }
-
-    //override old session cart details with new cart details
+    //reload and route to the index page
+    header("Location: index.php");
 }

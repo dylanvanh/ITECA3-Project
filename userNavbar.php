@@ -150,6 +150,13 @@ if (isset($_POST['logout'])) {
                             </ul>
                         </form>
                     <?php endif; ?>
+                    <form action="index.php" method="post" name="form">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item px-3">
+                                <button class="nav-link btn btn-outline-danger" type="submit" name="logout">Clear data</button>
+                            </li>
+                        </ul>
+                    </form>
                     <button class="btn btn-outline-success" type="submit">
                         <i class="bi-cart-fill"></i>
                         Cart
