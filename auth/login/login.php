@@ -26,8 +26,6 @@ if (isset($_POST['login'])) {
       $_SESSION['email'] = $row['email'];
       $_SESSION['userPhoneNumber'] = $row['phoneNumber'];
       $_SESSION['userIsAdmin'] = $row['isAdmin'];
-      //create empty cart
-      $_SESSION['userCart'] = array();
 
       if ($row['isAdmin'] == 1) {
         //if admin (1) -> isAdmin = true
