@@ -4,7 +4,6 @@ $_SESSION['activePage'] = 'cart';
 include('../userNavbar.php');
 
 $cart = unserialize($_SESSION['cart']);
-
 ?>
 
 
@@ -55,30 +54,32 @@ $cart = unserialize($_SESSION['cart']);
                                                         </div>
                                                     </div>
                                                     <div class="d-flex flex-row align-items-center">
-                                                        <div style="width: 50px;">
-                                                            <h5 class="fw-normal mb-0"><?php echo $cart[$i]->quantity ?></h5>
-                                                        </div>
                                                         <label for="amount">Qty</label>
-
-                                                        <select name="amount" id="quantity">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                            <option value="6">6</option>
-                                                            <option value="7">7</option>
-                                                            <option value="8">8</option>
-                                                            <option value="9">9</option>
-                                                            <option value="9">10</option>
-                                                        </select>
-
-                                                        <button type='submit' name="addToCart" class='btn btn-primary'>Update Quantity</button>
-
+                                                        <form method="post" name="updateCartItemQuantityForm" action="cart.php" class="container d-=fle">
+                                                            <select name="quantity" id="quantity">
+                                                                <option value="1" <?= ($cart[$i]->quantity == '1') ? 'selected' : ''; ?>>1</option>
+                                                                <option value="2" <?= ($cart[$i]->quantity == '2') ? 'selected' : ''; ?>>2</option>
+                                                                <option value="3" <?= ($cart[$i]->quantity == '3') ? 'selected' : ''; ?>>3</option>
+                                                                <option value="4" <?= ($cart[$i]->quantity == '4') ? 'selected' : ''; ?>>4</option>
+                                                                <option value="5" <?= ($cart[$i]->quantity == '5') ? 'selected' : ''; ?>>5</option>
+                                                                <option value="6" <?= ($cart[$i]->quantity == '6') ? 'selected' : ''; ?>>6</option>
+                                                                <option value="7" <?= ($cart[$i]->quantity == '7') ? 'selected' : ''; ?>>7</option>
+                                                                <option value="8" <?= ($cart[$i]->quantity == '8') ? 'selected' : ''; ?>>8</option>
+                                                                <option value="9" <?= ($cart[$i]->quantity == '9') ? 'selected' : ''; ?>>9</option>
+                                                                <option value="10" <?= ($cart[$i]->quantity == '10') ? 'selected' : ''; ?>>10</option>
+                                                            </select>
+                                                            <input type="hidden" name="id" value="<?php echo $cart[$i]->id ?>">
+                                                            <button type='submit' name="updateCartItemQuantity" class='btn btn-primary'>Update</button>
+                                                        </form>
+                                                        <form method="post" name="deleteCartItemForm" action="cart.php" class="container d-=fle">
+                                                            <input type="hidden" name="id" value="<?php echo $cart[$i]->id ?>">
+                                                            <button type='submit' name="deleteCartItem" class='btn btn-danger'>
+                                                                <i class="bi bi-x-circle"></i>
+                                                            </button>
+                                                        </form>
                                                         <div style="width: 80px;">
                                                             <h5 class="mb-0">R<?php echo $cart[$i]->price ?></h5>
                                                         </div>
-                                                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
