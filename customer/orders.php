@@ -1,4 +1,7 @@
 <?php
+include('../../userNavbar.php');
+$_SESSION['activePage'] = 'orders';
+
 
 //if customer not logged in -> route to home page
 if (!isset($_SESSION['userLoggedIn'])) {
@@ -6,9 +9,6 @@ if (!isset($_SESSION['userLoggedIn'])) {
 }
 
 
-include('../../session.php');
-$_SESSION['activePage'] = 'orders';
-include('../../userNavbar.php');
 
 
 ?>

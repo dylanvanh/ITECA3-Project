@@ -5,24 +5,24 @@ include('userNavbar.php');
 
 $cart = unserialize($_SESSION['cart']);
 
-echo var_dump($_SESSION);
+// echo $_SESSION;
 
-for ($i = 0; $i < count($cart); $i++) {
-    echo 'id = ', $cart[$i]->id;
-    echo "<br>";
-    echo 'name = ', $cart[$i]->name;
-    echo "<br>";
-    echo 'price = ', $cart[$i]->price;
-    echo "<br>";
-    echo 'quantity = ', $cart[$i]->quantity;
-    echo "<br>";
-    echo 'image = ', $cart[$i]->imageUrl;
-    echo "<br>";
-    echo 'size = ', $cart[$i]->size;
-    echo "<br>";
-    echo "---------------";
-    echo "<br>";
-}
+// for ($i = 0; $i < count($cart); $i++) {
+//     echo 'id = ', $cart[$i]->id;
+//     echo "<br>";
+//     echo 'name = ', $cart[$i]->name;
+//     echo "<br>";
+//     echo 'price = ', $cart[$i]->price;
+//     echo "<br>";
+//     echo 'quantity = ', $cart[$i]->quantity;
+//     echo "<br>";
+//     echo 'image = ', $cart[$i]->imageUrl;
+//     echo "<br>";
+//     echo 'size = ', $cart[$i]->size;
+//     echo "<br>";
+//     echo "---------------";
+//     echo "<br>";
+// }
 
 
 //display all the products
@@ -96,15 +96,15 @@ for ($i = 0; $i < count($cart); $i++) {
                                         <input type="hidden" name="product_price" value="<?php echo $fetch_product['price']; ?>">
 
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio1" name="size" value="small" required>Small
+                                            <input type="radio" class="form-check-input" id="radio1" name="size" value="S" required>Small
                                             <label class="form-check-label" for="radio1"></label>
                                         </div>
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio2" name="size" value="medium">Medium
+                                            <input type="radio" class="form-check-input" id="radio2" name="size" value="M">Medium
                                             <label class="form-check-label" for="radio2"></label>
                                         </div>
                                         <div class="form-check">
-                                            <input type="radio" class="form-check-input" id="radio2" name="size" value="large">Large
+                                            <input type="radio" class="form-check-input" id="radio2" name="size" value="L">Large
                                             <label class="form-check-label" for="radio2"></label>
                                         </div>
                                     </div>

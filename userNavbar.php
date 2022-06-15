@@ -142,7 +142,7 @@ if (isset($_POST['logout'])) {
                         </ul>
                     <?php endif; ?>
                     <?php if (!empty($_SESSION['userLoggedIn'])) : ?>
-                        <form action="index.php" method="post" name="form">
+                        <form action="/ITECA3-Project/index.php" method="post" name="form">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item px-3">
                                     <button class="nav-link btn btn-outline-danger" type="submit" name="logout">Logout</button>

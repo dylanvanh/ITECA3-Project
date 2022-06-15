@@ -85,7 +85,7 @@ if (isset($_POST['login'])) {
                 //if normal user (0) -> isAdmin = false
                 //route to user home page
                 $_SESSION['userLoggedIn'] = True;
-                header("Location: index.php");
+                header("Location: /ITECA3-Project/index.php");
             }
         } else {
             //invalid user details, nothing returned
@@ -133,7 +133,7 @@ if (isset($_POST['signup'])) {
 
 
             $_SESSION['userLoggedIn'] = True;
-            header("Location: index.php");
+            header("Location: /ITECA3-Project/index.php");
 
 
             echo 'created!';
@@ -191,7 +191,7 @@ if (isset($_POST['addToCart'])) {
     $_SESSION['cart'] = serialize($cart);
 
     //reload and route to the index page
-    header("Location: index.php");
+    header("Location: /ITECA3-Project/index.php");
 }
 
 if (isset($_POST['updateCartItemQuantity'])) {
@@ -253,9 +253,6 @@ if (isset($_POST['clearCart'])) {
 }
 
 
-
-
-
 if (isset($_POST['checkoutCart'])) {
     //retrieve existing cart data
     $cart = unserialize($_SESSION['cart']);
@@ -276,5 +273,60 @@ if (isset($_POST['checkoutCart'])) {
         }
     } else {
         header("Location : login.php");
+    }
+}
+
+
+//create order based on location specified for the user
+if (isset($_POST['placeOrder'])) {
+    //retrieve existing cart data
+    $cart = unserialize($_SESSION['cart']);
+
+    if ($_SESSION['userLoggedIn'] == True) {
+
+
+        $location = $_POST['location'];
+
+        //retrieve userId
+        $userId = $_SESSION['userId'];
+
+
+        //create the order
+        $orderInsertQuery = "INSERT INTO Orders (userId, deliveryLocation)
+            VALUES ('$userId','$location')";
+
+        if (mysqli_query($conn, $orderInsertQuery)) {
+            //id of the newly created created order field
+            $orderId = mysqli_insert_id($conn);
+            echo "New record created successfully. Last inserted ID is: " . $orderId;
+        } else {
+            echo "Error: " . $orderInsertQuery . "<br>" . mysqli_error($conn);
+        }
+
+        //create the order items
+        $orderItemInsertQuery = "INSERT INTO OrderItems (userId, deliveryLocation)
+                VALUES ('$userId','$location')";
+
+        for ($i = 0; $i < count($cart); $i++) {
+            //create the order items
+            //orderId , productId , quantity, size
+
+            $productId = $cart[$i]->id;
+            $quantity = $cart[$i]->quantity;
+            $size = $cart[$i]->size;
+
+            $orderItemInsertQuery = "INSERT INTO OrderItems (orderId, productId,quantity,size)
+            VALUES ('$orderId','$productId','$quantity','$size')";
+
+            //execute sql statement
+            mysqli_query($conn, $orderItemInsertQuery);
+        }
+
+
+        //clear cart after order is placed
+        $_SESSION['cart'] = serialize([]);
+        //route to orders page
+        header("Location: /ITECA3-Project/customer/orders.php");
+
     }
 }

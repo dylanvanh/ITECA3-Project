@@ -1,37 +1,35 @@
 <?php
+
 include('../session.php');
-$_SESSION['activePage'] = 'checkout';
-include('../userNavbar.php');
+
 
 //user trying to checkout
-
 $_SESSION['userTryingToCheckout'] = True;
-$cart = unserialize($_SESSION['cart']);
-
 
 //if user not logged in yet
 //reroute to login page
 if (!isset($_SESSION['userLoggedIn'])) {
     header('location: /ITECA3-Project/auth/login/login.php');
+} else {
+    include('../userNavbar.php');
+
+    $cart = unserialize($_SESSION['cart']);
+
+    $_SESSION['activePage'] = 'checkout';
+
+    $fixedOperationsCost = 25;
+
+    //initial subTotal value
+    $subTotal = 0;
+
+    //initial total value
+    $total = 0;
+
+    //calculate subTotal of items
+    for ($i = 0; $i < count($cart); $i++) {
+        $subTotal += $cart[$i]->price * $cart[$i]->quantity;
+    }
 }
-
-
-$fixedOperationsCost = 25;
-
-//initial subTotal value
-$subTotal = 0;
-
-//initial total value
-$total = 0;
-
-
-
-//calculate subTotal of items
-for ($i = 0; $i < count($cart); $i++) {
-    $subTotal += $cart[$i]->price * $cart[$i]->quantity;
-}
-
-
 
 ?>
 
@@ -52,7 +50,7 @@ for ($i = 0; $i < count($cart); $i++) {
     <h1>Checkout screen</h1>
 
 
-    <form method="post" name="checkoutCartForm" action="cart.php" class="container">
+    <form method="post" name="placeOrderForm" action="cart.php" class="container">
         <div class="container">
             <?php
             //calculate total
@@ -63,7 +61,15 @@ for ($i = 0; $i < count($cart); $i++) {
             <h3>Subtotal : R<?php echo $subTotal ?>
                 <h3>Operations Cost : R30</h3>
                 <h3>Total : R<?php echo $total ?>
-
+                    <div class="location-container">
+                        <label for="location">Collection Location :</label>
+                        <select name="location" id="location">
+                            <option value="Durbanville">Durbanville</option>
+                            <option value="Tygervalley">Tygervalley</option>
+                            <option value="Milnerton">Milnerton</option>
+                        </select>
+                    </div>
+                    <button type="submit" name="placeOrder">Confirm Order</button>
         </div>
     </form>
 
