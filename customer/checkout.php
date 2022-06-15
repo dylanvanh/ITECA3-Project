@@ -59,7 +59,7 @@ if (!isset($_SESSION['userLoggedIn'])) {
             }
             ?>
             <h3>Subtotal : R<?php echo $subTotal ?>
-                <h3>Operations Cost : R30</h3>
+                <h3>Operations Cost : R<?php echo $fixedOperationsCost ?> </h3>
                 <h3>Total : R<?php echo $total ?>
                     <div class="location-container">
                         <label for="location">Collection Location :</label>
@@ -69,6 +69,7 @@ if (!isset($_SESSION['userLoggedIn'])) {
                             <option value="Milnerton">Milnerton</option>
                         </select>
                     </div>
+                    <input type="hidden" name="totalCost" value="<?php echo $total ?>">
                     <button type="submit" name="placeOrder">Confirm Order</button>
         </div>
     </form>

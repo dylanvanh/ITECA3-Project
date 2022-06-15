@@ -286,14 +286,16 @@ if (isset($_POST['placeOrder'])) {
 
 
         $location = $_POST['location'];
+        $totalCost = $_POST['totalCost'];
+
 
         //retrieve userId
         $userId = $_SESSION['userId'];
 
 
         //create the order
-        $orderInsertQuery = "INSERT INTO Orders (userId, deliveryLocation)
-            VALUES ('$userId','$location')";
+        $orderInsertQuery = "INSERT INTO Orders (userId, deliveryLocation,totalCost)
+            VALUES ('$userId','$location','$totalCost')";
 
         if (mysqli_query($conn, $orderInsertQuery)) {
             //id of the newly created created order field
@@ -304,8 +306,8 @@ if (isset($_POST['placeOrder'])) {
         }
 
         //create the order items
-        $orderItemInsertQuery = "INSERT INTO OrderItems (userId, deliveryLocation)
-                VALUES ('$userId','$location')";
+        $orderItemInsertQuery = "INSERT INTO OrderItems (userId, deliveryLocation,totalCost)
+                VALUES ('$userId','$location','$totalCost')";
 
         for ($i = 0; $i < count($cart); $i++) {
             //create the order items
@@ -314,9 +316,10 @@ if (isset($_POST['placeOrder'])) {
             $productId = $cart[$i]->id;
             $quantity = $cart[$i]->quantity;
             $size = $cart[$i]->size;
+            $cost = $cart[$i]->price * $quantity;
 
-            $orderItemInsertQuery = "INSERT INTO OrderItems (orderId, productId,quantity,size)
-            VALUES ('$orderId','$productId','$quantity','$size')";
+            $orderItemInsertQuery = "INSERT INTO OrderItems (orderId, productId,quantity,size,cost)
+            VALUES ('$orderId','$productId','$quantity','$size','$cost')";
 
             //execute sql statement
             mysqli_query($conn, $orderItemInsertQuery);
@@ -327,6 +330,5 @@ if (isset($_POST['placeOrder'])) {
         $_SESSION['cart'] = serialize([]);
         //route to orders page
         header("Location: /ITECA3-Project/customer/orders.php");
-
     }
 }

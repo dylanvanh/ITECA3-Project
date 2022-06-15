@@ -40,7 +40,7 @@ if (isset($_POST['signUp'])) {
 
 
             $_SESSION['userLoggedIn'] = True;
-            header("Location: ../../user/shop/shop.php");
+            header("Location: ITECA3-Project/index.php");
 
 
             echo 'created!';
@@ -65,75 +65,58 @@ if (isset($_POST['signUp'])) {
 </head>
 
 <body>
-    <div class="test">
-        <nav class="navbar navbar-expand-sm bg-light navbar-light">
-            <div class="container justify-content-center">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../index.php">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../login/login.php">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">SignUp</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
 
-        <div class="container py-5 h-100">
-            <form method="post" action="signup.php" name="form">
-                <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card bg-primary text-white" style="border-radius: 3rem;">
-                            <div class="card-body p-5 text-center">
+    <div class="container py-5 h-100">
+        <form method="post" action="signup.php" name="form">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-primary text-white" style="border-radius: 3rem;">
+                        <div class="card-body p-5 text-center">
 
-                                <div class="-5 mt-md-4 pb-5">
+                            <div class="-5 mt-md-4 pb-5">
 
-                                    <h2 class="fw-bold mb-4">Sign Up</h2>
+                                <h2 class="fw-bold mb-4">Sign Up</h2>
 
-                                    <div class="mb-4">
-                                        <label class="form-label" for="name">Name</label>
-                                        <input type="text" name="name" class="form-control form-control-lg" />
-                                    </div>
-
-
-                                    <div class="mb-4">
-                                        <label class="form-label" for="email">Email</label>
-                                        <input type="email" name="email" class="form-control form-control-lg" />
-                                    </div>
-
-                                    <div class="mb-4">
-                                        <label class="form-label" for="phoneNumber">Phone Number</label>
-                                        <input type="text" name="phoneNumber" class="form-control form-control-lg" />
-                                    </div>
-
-
-                                    <div class="mb-4">
-                                        <label class="form-label" for="password">Password</label>
-                                        <input type="password" name="password" class="form-control form-control-lg" />
-                                    </div>
-
-
-                                    <button class="btn btn- btn-lg px-5" type="submit" name="signUp">Sign Up</button>
-
+                                <div class="mb-4">
+                                    <label class="form-label" for="name">Name</label>
+                                    <input type="text" name="name" class="form-control form-control-lg" />
                                 </div>
 
-                                <div>
-                                    <p class="mb-0">Have an account? <a href="../login/login.php" class="text-black fw-bold">Login</a>
-                                    </p>
+
+                                <div class="mb-4">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input type="email" name="email" class="form-control form-control-lg" />
                                 </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label" for="phoneNumber">Phone Number</label>
+                                    <input type="text" name="phoneNumber" class="form-control form-control-lg" />
+                                </div>
+
+
+                                <div class="mb-4">
+                                    <label class="form-label" for="password">Password</label>
+                                    <input type="password" name="password" class="form-control form-control-lg" />
+                                </div>
+
+
+                                <button class="btn btn- btn-lg px-5" type="submit" name="signUp">Sign Up</button>
+
+                            </div>
+
+                            <div>
+                                <p class="mb-0">Have an account? <a href="../login/login.php" class="text-black fw-bold">Login</a>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
+        </form>
 
-        </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>

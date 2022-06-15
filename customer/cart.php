@@ -47,7 +47,7 @@ $total = 0;
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <div>
                                             <p class="mb-1">Shopping cart</p>
-                                            <p class="mb-0">You have 4 items in your cart</p>
+                                            <p class="mb-0">You have <?php echo count($cart) ?> items in your cart</p>
                                         </div>
                                     </div>
 
@@ -112,7 +112,7 @@ $total = 0;
                                         }
                                         ?>
                                         <h3>Subtotal : R<?php echo $subTotal ?>
-                                            <h3>Operations Cost : R30</h3>
+                                            <h3>Operations Cost : <?php echo $fixedOperationsCost ?></h3>
                                             <h3>Total : R<?php echo $total ?>
 
                                     </div>
