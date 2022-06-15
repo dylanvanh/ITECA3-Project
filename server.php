@@ -208,8 +208,6 @@ if (isset($_POST['updateCartItemQuantity'])) {
     //retrieve existing cart data
     $cart = unserialize($_SESSION['cart']);
 
-
-
     //set the quantity to the new value
     for ($i = 0; $i < count($cart); $i++) {
         //check if the id provided in cart matches the id provided in the form
@@ -244,4 +242,39 @@ if (isset($_POST['deleteCartItem'])) {
     }
 
     $_SESSION['cart'] = serialize($cart);
+}
+
+
+if (isset($_POST['clearCart'])) {
+    //retrieve existing cart data
+
+    $_SESSION['cart'] = serialize([]);
+    header("Location: /ITECA3-Project/customer/cart.php");
+}
+
+
+
+
+
+if (isset($_POST['checkoutCart'])) {
+    //retrieve existing cart data
+    $cart = unserialize($_SESSION['cart']);
+
+    $_SESSION['cart'] = serialize($cart);
+
+    echo "Test";
+
+    //user is logged in
+    if ($_SESSION['userLoggedIn'] == True) {
+
+        //check that the cart is not empty
+        if (count($cart) > 0) {
+            //route to checkout page
+            header("Location: checkout.php");
+        } else {
+            header("Location: /ITECA3-Project/index.php");
+        }
+    } else {
+        header("Location : login.php");
+    }
 }

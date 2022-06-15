@@ -35,8 +35,16 @@ if (isset($_POST['login'])) {
       } else {
         //if normal user (0) -> isAdmin = false
         //route to user home page
+
         $_SESSION['userLoggedIn'] = True;
-        header("Location: ../../index.php");
+
+
+        //checks if the user was in the process of checking out , before sigining in
+        if (isset($_SESSION['userTryingToCheckout'])) {
+          header('location: /ITECA3-Project/customer/checkout.php');
+        } else {
+          header("Location: ../../index.php");
+        }
       }
     } else {
       //invalid user details, nothing returned
@@ -49,7 +57,7 @@ if (isset($_POST['login'])) {
 
 // 
 ?>
-<!-- 
+
 <!doctype html>
 <html lang="en">
 
@@ -60,7 +68,7 @@ if (isset($_POST['login'])) {
 
   <title>Login!</title>
 </head>
- 
+
 <body>
 
   <nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -121,4 +129,4 @@ if (isset($_POST['login'])) {
 
 </body>
 
-</html> -->
+</html>

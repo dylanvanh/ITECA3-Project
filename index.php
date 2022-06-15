@@ -5,6 +5,8 @@ include('userNavbar.php');
 
 $cart = unserialize($_SESSION['cart']);
 
+echo var_dump($_SESSION);
+
 for ($i = 0; $i < count($cart); $i++) {
     echo 'id = ', $cart[$i]->id;
     echo "<br>";

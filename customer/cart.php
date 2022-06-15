@@ -4,6 +4,19 @@ $_SESSION['activePage'] = 'cart';
 include('../userNavbar.php');
 
 $cart = unserialize($_SESSION['cart']);
+
+$fixedOperationsCost = 25;
+
+//initial subTotal value
+$subTotal = 0;
+
+//initial total value
+$total = 0;
+
+
+
+//implement an order summary -> like takealot
+
 ?>
 
 
@@ -40,6 +53,9 @@ $cart = unserialize($_SESSION['cart']);
 
                                     <?php
                                     for ($i = 0; $i < count($cart); $i++) {
+                                        //calculate subtotal
+                                        //total without operationsCost etc
+                                        $subTotal += ($cart[$i]->price * $cart[$i]->quantity);
                                     ?>
                                         <div class="card mb-3" id="cartItem <?php echo $cart[$i]->id ?>">
                                             <div class="card-body">
@@ -71,135 +87,55 @@ $cart = unserialize($_SESSION['cart']);
                                                             <input type="hidden" name="id" value="<?php echo $cart[$i]->id ?>">
                                                             <button type='submit' name="updateCartItemQuantity" class='btn btn-primary'>Update</button>
                                                         </form>
-                                                        <form method="post" name="deleteCartItemForm" action="cart.php" class="container d-=fle">
+                                                        <form method="post" name="deleteCartItemForm" action="cart.php" class="container d-flex">
                                                             <input type="hidden" name="id" value="<?php echo $cart[$i]->id ?>">
                                                             <button type='submit' name="deleteCartItem" class='btn btn-danger'>
                                                                 <i class="bi bi-x-circle"></i>
                                                             </button>
                                                         </form>
                                                         <div style="width: 80px;">
-                                                            <h5 class="mb-0">R<?php echo $cart[$i]->price ?></h5>
+                                                            <h5 class="mb-0">R<?php echo $cart[$i]->price * $cart[$i]->quantity ?></h5>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
+                                        </div>
                                     <?php
                                     }
                                     ?>
+                                    <div class="container">
+                                        <?php
+                                        //calculate total
+                                        if ($subTotal != 0) {
+                                            $total = $subTotal + $fixedOperationsCost;
+                                        }
+                                        ?>
+                                        <h3>Subtotal : R<?php echo $subTotal ?>
+                                            <h3>Operations Cost : R30</h3>
+                                            <h3>Total : R<?php echo $total ?>
 
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>Iphone 11 pro</h5>
-                                                        <p class="small mb-0">256GB, Navy Blue</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 50px;">
-                                                        <h5 class="fw-normal mb-0">2</h5>
-                                                    </div>
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">$900</h5>
-                                                    </div>
-                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-
-                                    <!-- <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img2.webp" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>Samsung galaxy Note 10 </h5>
-                                                        <p class="small mb-0">256GB, Navy Blue</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 50px;">
-                                                        <h5 class="fw-normal mb-0">2</h5>
-                                                    </div>
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">$900</h5>
-                                                    </div>
-                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                     <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img3.webp" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>Canon EOS M50</h5>
-                                                        <p class="small mb-0">Onyx Black</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 50px;">
-                                                        <h5 class="fw-normal mb-0">1</h5>
-                                                    </div>
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">$1199</h5>
-                                                    </div>
-                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card mb-3 mb-lg-0">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div>
-                                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img4.webp" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <h5>MacBook Pro</h5>
-                                                        <p class="small mb-0">1TB, Graphite</p>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <div style="width: 50px;">
-                                                        <h5 class="fw-normal mb-0">1</h5>
-                                                    </div>
-                                                    <div style="width: 80px;">
-                                                        <h5 class="mb-0">$1799</h5>
-                                                    </div>
-                                                    <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
+                                    <?php
+                                    if ($subTotal != 0) {
+                                        echo '
+                                        <div class="container">
+                                            <span><a class="btn btn-primary" href="checkout.php">Checkout</a></span>
+                                            <form method="post" name="clearCartForm" action="cart.php" class="container d-flex">
+                                                <button type="submit" name="clearCart" class="btn btn-danger">Clear Cart </button>
+                                            </form>
+                                        </div>';
+                                    }
+                                    ?>
                                 </div>
-
-
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>

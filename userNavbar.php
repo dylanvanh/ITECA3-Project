@@ -157,8 +157,8 @@ if (isset($_POST['logout'])) {
                             </li>
                         </ul>
                     </form>
-                    <a href="customer/cart.php">
-                        <button class="btn btn-outline-success" type="submit" href="">
+                    <a href="/ITECA3-Project/customer/cart.php">
+                        <button class="btn btn-outline-success" type="submit">
                             <i class="bi-cart-fill"></i>
                             Cart
                         </button>
