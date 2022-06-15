@@ -1,5 +1,5 @@
 <?php
-include('../../userNavbar.php');
+include('../userNavbar.php');
 $_SESSION['activePage'] = 'orders';
 
 
@@ -7,10 +7,6 @@ $_SESSION['activePage'] = 'orders';
 if (!isset($_SESSION['userLoggedIn'])) {
     header('location: /ITECA3-Project/index.php');
 }
-
-
-
-
 ?>
 
 <!doctype html>

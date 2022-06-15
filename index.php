@@ -2,35 +2,7 @@
 include('session.php');
 $_SESSION['activePage'] = 'index';
 include('userNavbar.php');
-
 $cart = unserialize($_SESSION['cart']);
-
-// echo $_SESSION;
-
-// for ($i = 0; $i < count($cart); $i++) {
-//     echo 'id = ', $cart[$i]->id;
-//     echo "<br>";
-//     echo 'name = ', $cart[$i]->name;
-//     echo "<br>";
-//     echo 'price = ', $cart[$i]->price;
-//     echo "<br>";
-//     echo 'quantity = ', $cart[$i]->quantity;
-//     echo "<br>";
-//     echo 'image = ', $cart[$i]->imageUrl;
-//     echo "<br>";
-//     echo 'size = ', $cart[$i]->size;
-//     echo "<br>";
-//     echo "---------------";
-//     echo "<br>";
-// }
-
-
-//display all the products
-//to each card add a drop down menu for size (S,M,L,XL)
-//to each card add a drop down menu for quantity
-//to each card add a button for add to cart
-
-// define variables and set to empty values
 ?>
 
 <!DOCTYPE html>
