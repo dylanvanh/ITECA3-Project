@@ -17,14 +17,13 @@ if (isset($_POST["createProduct"])) {
     // $target_dir = "../assets/";   
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
     echo $target_file;
-    $erorsFound = false;
-    $errors = [];
+    $errorsFound = false;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
     //validate the file is an image
     $check = getimagesize($_FILES["image"]["tmp_name"]);
     if ($check === false) {
-        $erorsFound = true;
+        $errorsFound = true;
     } else {
     }
 
@@ -32,30 +31,52 @@ if (isset($_POST["createProduct"])) {
     // Check if file already exists
     if (file_exists($target_file)) {
         echo "Sorry, file already exists.";
-        $erorsFound = true;
+        $errorsFound = true;
     }
 
     // Check file size
     if ($_FILES["image"]["size"] > 500000) {
         echo "Sorry, your file is too large.";
-        $erorsFound = true;
+        $errorsFound = true;
     }
 
     //Checks if valid image file types
     if (!$imageFileType == "jpg" && !$imageFileType == "png" && !$imageFileType == "jpeg") {
-        $erorsFound = true;
+        $errorsFound = true;
     }
 
-    // Checks if any errors found
-    if ($erorsFound) {
-        echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
-    } else {
+    // Checks if no errors found
+    if (!$errorsFound) {
         // add the new image to the assets folder
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
             echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
         } else {
-            echo "Sorry, there was an error uploading your file.";
+            echo "Error uplading file.";
+            $errorsFound = true;
+        }
+    } else {
+        //if errors found
+        echo "Error uploading image.";
+    }
+
+    //checks if any errors again , incase image upload failed
+    if (!$errorsFound) {
+        //create product record
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $price = $_POST['price'];
+        $imageUrl = "/ITECA3-Project/assets/" . $_FILES["image"]["name"];
+
+
+        //create the product
+        $productInsertQuery = "INSERT INTO Products (name, price,description,imageUrl,visible)
+                VALUES ('$name','$price','$description','$imageUrl',TRUE)";
+
+        if (mysqli_query($conn, $productInsertQuery)) {
+            echo "New product created successfully.";
+            header("Location: /ITECA3-Project/admin/products.php");
+        } else {
+            echo "Error: " . $productInsertQuery . "<br>" . mysqli_error($conn);
         }
     }
 }
