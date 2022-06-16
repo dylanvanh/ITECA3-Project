@@ -37,13 +37,12 @@ if (isset($_POST['login'])) {
         //route to user home page
 
         $_SESSION['userLoggedIn'] = True;
-
-
+        
         //checks if the user was in the process of checking out , before sigining in
         if (isset($_SESSION['userTryingToCheckout'])) {
           header('location: /ITECA3-Project/customer/checkout.php');
         } else {
-          header("Location: ../../index.php");
+          header("Location: /ITECA3-Project/index.php");
         }
       }
     } else {

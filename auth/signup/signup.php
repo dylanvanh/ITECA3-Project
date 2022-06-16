@@ -30,20 +30,22 @@ if (isset($_POST['signUp'])) {
         try {
             //run the insert query
             mysqli_query($conn, $insertUserQuery);
-            echo "<p style='color:green'>User Created Successfully</p>";
 
+            $userId = mysqli_insert_id($conn);
             //set session variables for required user details
-            $_SESSION['userId'] = $row['id'];
+            $_SESSION['userId'] = $userId;
             $_SESSION['userName'] = $row['name'];
             $_SESSION['email'] = $row['email'];
             $_SESSION['userPhoneNumber'] = $row['phoneNumber'];
 
-
             $_SESSION['userLoggedIn'] = True;
-            header("Location: ITECA3-Project/index.php");
 
-
-            echo 'created!';
+            //checks if the user was in the process of checking out , before sigining in
+            if (isset($_SESSION['userTryingToCheckout'])) {
+                header('Location: /ITECA3-Project/customer/checkout.php');
+            } else {
+                header("Location: /ITECA3-Project/index.php");
+            }
         } catch (Exception $e) {
             echo "<p style='color:red'>Error Creating User</p>";
         }

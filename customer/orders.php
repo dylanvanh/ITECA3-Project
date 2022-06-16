@@ -27,7 +27,7 @@ if (!isset($_SESSION['userLoggedIn'])) {
     <div class="container py-5 my-5 mx-auto border">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <?php
-            $ordersSelectStatement = 'SELECT * FROM orders';
+            $ordersSelectStatement = 'SELECT * FROM orders WHERE userId = ' . $_SESSION['userId'];
             $ordersResult = mysqli_query($conn, $ordersSelectStatement);
 
             //calculate total price an individual order
