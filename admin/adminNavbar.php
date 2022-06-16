@@ -42,7 +42,7 @@ if (isset($_POST['logout'])) {
                             if index page is displaying
                             show the navItem as active
                         -->
-                        <?php if ($_SESSION['activePage'] == 'index') { ?>
+                        <?php if ($_SESSION['activePage'] == 'users') { ?>
                             <!-- Page active -->
                             <a class="nav-link active" aria-current="page" href="#">Users</a>
                         <?php } else { ?>

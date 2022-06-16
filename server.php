@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 include('session.php');
 include('connection.php');
 
@@ -228,10 +231,40 @@ if (isset($_POST['placeOrder'])) {
             mysqli_query($conn, $orderItemInsertQuery);
         }
 
-
         //clear cart after order is placed
         $_SESSION['cart'] = serialize([]);
         //route to orders page
         header("Location: /ITECA3-Project/customer/orders.php");
     }
+}
+
+
+//ADMIN OPTIONS
+
+if (isset($_POST['toggleProductVisibility'])) {
+
+    //required id of the item to be deleted
+    $id = $_POST['id'];
+
+    //check what the existing visibility is for the product
+    $productVisibilityQuery = "SELECT visible FROM Products WHERE id = '$id'";
+    $productsVisibilityResults = mysqli_query($conn, $productVisibilityQuery);
+    $productVisibilityData = mysqli_fetch_array($productsVisibilityResults);
+
+    $visibility =  $productVisibilityData['visible'];
+
+    // $updatedVisibility = "";
+
+    //if product already visibible
+    if ($visibility == '1') {
+        //change to hidden (false)
+        $updateProductVisibilityQuery = "UPDATE Products SET visible = FALSE WHERE id = '$id'  ";
+    } else {
+        //change to visible (true)
+        $updateProductVisibilityQuery = "UPDATE Products SET visible = TRUE  WHERE id = '$id'";
+    }
+
+    if (mysqli_query($conn, $updateProductVisibilityQuery)) {
+        echo "Product $id successfully updated for customers";
+    } 
 }
