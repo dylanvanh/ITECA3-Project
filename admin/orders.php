@@ -55,11 +55,16 @@ if (isset($_POST['completeAllOrders'])) {
     <div class="container py-5 my-5 mx-auto border">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <?php
+
             $ordersSelectStatement = 'SELECT * FROM orders WHERE completed = 0';
             $ordersResult = mysqli_query($conn, $ordersSelectStatement);
 
             //calculate total price an individual order
             while ($orderData = mysqli_fetch_array($ordersResult)) {
+                //gets the data of the user who placed the order
+                $userDetailsQuery = "SELECT * FROM users WHERE id = '" . $orderData['userId'] . "'";
+                $userDetailsResults = mysqli_query($conn, $userDetailsQuery);
+                $userDetailsData = mysqli_fetch_array($userDetailsResults);
             ?>
                 <!--Order modal -->
                 <div class='modal fade' id='orderModal<?php echo $orderData['id'] ?>' tabindex='-1' aria-hidden='true'>
@@ -71,6 +76,7 @@ if (isset($_POST['completeAllOrders'])) {
                             </div>
                             <div class='modal-body'>
                                 <?php
+
 
                                 $orderItemsSelectStatement = "SELECT * FROM orderItems WHERE orderId = '$orderData[id]'";
                                 $orderItemsResult = mysqli_query($conn, $orderItemsSelectStatement);
@@ -102,7 +108,10 @@ if (isset($_POST['completeAllOrders'])) {
                 <div class='col'>
                     <div class='card'>
                         <div class='card-body'>
-                            <h5 class='card-title'><?php echo $orderData['date'] ?></h5>
+                            <h5 class='card-title'><?php echo $userDetailsData['name'] ?></h5>
+                            <p><?php echo $userDetailsData['email'] ?></p>
+                            <p><?php echo $userDetailsData['phoneNumber'] ?></p>
+                            <p><?php echo $orderData['date'] ?></p>
                             <p class='card-text'><?php echo $orderData['deliveryLocation'] ?></p>
                             <p class='card-text'><?php echo $orderData['id'] ?></p>
                             <p class='card-text'>R<?php echo $orderData['totalCost'] ?></p>
