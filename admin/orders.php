@@ -16,6 +16,19 @@ if (isset($_POST['completeOrder'])) {
         echo "Error: " . $completeOrderQuery . "<br>" . mysqli_error($conn);
     }
 }
+
+
+if (isset($_POST['completeAllOrders'])) {
+
+    //create the order
+    $completeOrderQuery = "UPDATE orders SET completed = TRUE";
+    if (mysqli_query($conn, $completeOrderQuery)) {
+        $orderId = mysqli_insert_id($conn);
+        echo "Order completed successfully.";
+    } else {
+        echo "Error: " . $completeOrderQuery . "<br>" . mysqli_error($conn);
+    }
+}
 ?>
 
 
@@ -32,6 +45,11 @@ if (isset($_POST['completeOrder'])) {
 
 <body>
     <h1>Orders</h1>
+
+
+    <form method="post" name="completeAllOrdersForm" action="">
+        <button class="btn btn-danger" type="submit" name="completeAllOrders">Complete All</button>
+    </form>
 
 
     <div class="container py-5 my-5 mx-auto border">
