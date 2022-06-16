@@ -1,7 +1,5 @@
 <?php
 
-use function PHPSTORM_META\type;
-
 include('session.php');
 include('connection.php');
 
@@ -263,6 +261,6 @@ if (isset($_POST['toggleProductVisibility'])) {
         //change to visible (true)
         $updateProductVisibilityQuery = "UPDATE Products SET visible = TRUE  WHERE id = '$id'";
     }
-    
+
     (mysqli_query($conn, $updateProductVisibilityQuery));
 }
