@@ -263,8 +263,6 @@ if (isset($_POST['toggleProductVisibility'])) {
         //change to visible (true)
         $updateProductVisibilityQuery = "UPDATE Products SET visible = TRUE  WHERE id = '$id'";
     }
-
-    if (mysqli_query($conn, $updateProductVisibilityQuery)) {
-        echo "Product $id successfully updated for customers";
-    } 
+    
+    (mysqli_query($conn, $updateProductVisibilityQuery));
 }

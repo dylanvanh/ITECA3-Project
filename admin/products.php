@@ -23,6 +23,8 @@ include('adminNavbar.php');
 <body>
     <h1>Products Page</h1>
 
+    <a class="btn btn-primary" href="createProduct.php">Create product</a>
+
     <div class="container py-5 my-5 mx-auto border">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <?php
