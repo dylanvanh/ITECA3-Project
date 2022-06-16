@@ -31,13 +31,13 @@ if (isset($_POST['login'])) {
         //if admin (1) -> isAdmin = true
         //route to admin home page
         $_SESSION['adminLoggedIn'] = True;
-        header("Location: ../../admin/home/adminHome.php");
+        header("Location: /ITECA3-Project/admin/adminHome.php");
       } else {
         //if normal user (0) -> isAdmin = false
         //route to user home page
 
         $_SESSION['userLoggedIn'] = True;
-        
+
         //checks if the user was in the process of checking out , before sigining in
         if (isset($_SESSION['userTryingToCheckout'])) {
           header('location: /ITECA3-Project/customer/checkout.php');
