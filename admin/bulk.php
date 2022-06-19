@@ -4,11 +4,126 @@ $_SESSION['activePage'] = 'bulk';
 include('adminNavbar.php');
 
 
+class BulkOrderItem
+{
+    // Properties
+    public $productId;
+    public $name;
+    public $largeSize;
+    public $mediumSize;
+    public $smallSize;
+    public $total;
+
+    function __construct($productId, $name, $largeSize, $mediumSize, $smallSize, $total)
+    {
+        $this->productId = $productId;
+        $this->name = $name;
+        $this->largeSize = $largeSize;
+        $this->mediumSize = $mediumSize;
+        $this->smallSize = $smallSize;
+        $this->total = $total;
+    }
+}
+
+// [1 => [name => 'hat', largeSize => 2, mediumSize => 0, smallSize = 1, total]
+
+
 // if admin not logged in -> route to login
 if (!isset($_SESSION['adminLoggedIn'])) {
     header('location: /ITECA3-Project/index.php');
 }
+
+
+//consists of multiple BulkOrderItem objects
+$bulkProductsOrder = [];
+
+
+// 1. loop through orders and get the order id's , where completed = 0
+$ordersSelectStatement = 'SELECT * FROM orders WHERE completed = 0';
+$ordersResult = mysqli_query($conn, $ordersSelectStatement);
+
+while ($orderData = mysqli_fetch_array($ordersResult)) {
+    //retrieve the orderItems for the current order
+    $orderItemsSelectStatement = "SELECT * FROM orderItems WHERE orderId = '$orderData[id]'";
+    $orderItemsResult = mysqli_query($conn, $orderItemsSelectStatement);
+    while ($orderItemsData = mysqli_fetch_array($orderItemsResult)) {
+
+
+        //retrieve the product for the current orderItem
+        $productId = $orderItemsData['productId'];
+
+        //reset if a match is found
+        $foundMatch = false;
+        //track the index of the found match
+
+        $index = 0;
+        //check if productId already in the bulkProductsOrder array
+
+
+        //check if product object already exists in the bulkProductsOrder array
+        foreach ($bulkProductsOrder as $product) {
+            if ($product->productId == $productId) {
+                $foundMatch = true;
+                break;
+            }
+            $index += 1;
+        }
+
+        //if a match was found (product already in bulkOrdersArray)
+        if ($foundMatch) {
+            switch ($orderItemsData['size']) {
+                case "S":
+                    $bulkProductsOrder[$index]->smallSize += $orderItemsData['quantity'];
+                    break;
+                case "M":
+                    $bulkProductsOrder[$index]->mediumSize += $orderItemsData['quantity'];
+                    break;
+                case "L":
+                    $bulkProductsOrder[$index]->largeSize += $orderItemsData['quantity'];
+                    break;
+                default:
+                    break;
+            }
+
+            // //calculate the new total
+            $bulkProductsOrder[$index]->total += $orderItemsData['quantity'];
+        } else {
+
+            //get productName from products table
+            $productNameSelectStatement = "SELECT * FROM products WHERE id = '$productId'";
+            $productNameResult = mysqli_query($conn, $productNameSelectStatement);
+            $productNameData = mysqli_fetch_array($productNameResult);
+            $productName = $productNameData['name'];
+
+            //create new productItem
+            $newFoundProduct = new BulkOrderItem($productId, $productName, 0, 0, 0, 0);
+
+            //add the size quantity to the newly created object
+            switch ($orderItemsData['size']) {
+                case "S":
+                    $newFoundProduct->smallSize += $orderItemsData['quantity'];
+                    break;
+                case "M":
+                    $newFoundProduct->mediumSize += $orderItemsData['quantity'];
+                    break;
+                case "L":
+                    $newFoundProduct->largeSize += $orderItemsData['quantity'];
+                    break;
+                default:
+                    break;
+            }
+
+            //calculate the new total
+            $newFoundProduct->total += $orderItemsData['quantity'];
+
+            //add the productId to the array
+            $bulkProductsOrder[] = $newFoundProduct;
+        }
+    }
+}
 ?>
+
+
 
 
 <!doctype html>
@@ -23,35 +138,32 @@ if (!isset($_SESSION['adminLoggedIn'])) {
 </head>
 
 <body>
-    <h1>Bulk Order Required Page</h1>
+    <h1>Bulk Order Required</h1>
 
     <div class="container py-5 my-5 mx-auto border">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">ProductID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone Number</th>
-                        <th scope="col">isAdmin</th>
+                        <th scope="col">Small</th>
+                        <th scope="col">Medium</th>
+                        <th scope="col">Large</th>
+                        <th scope="col">Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    
-                    //RATHER CREATE A BIG SQL STATEMENT , with ORDER BY & GROUP BY ETC
-                    $usersSelectStatement = 'SELECT * FROM OrderItems';
-                    $usersResults = mysqli_query($conn, $usersSelectStatement);
-                    while ($userData = mysqli_fetch_array($usersResults)) {
+                    foreach ($bulkProductsOrder as $productData) {
                     ?>
                         <tr>
-                            <td><?php echo $userData['id']; ?></td>
-                            <!-- <td><?php echo $userData['name']; ?></td> -->
-                            <!-- <td><?php echo $userData['email']; ?></td> -->
-                            <!-- <td><?php echo $userData['phoneNumber']; ?></td> -->
-                            <!-- <td><?php echo $userData['isAdmin']; ?></td> -->
-
+                            <td><?php echo $productData->productId; ?></td>
+                            <td><?php echo $productData->name; ?></td>
+                            <td><?php echo $productData->smallSize; ?></td>
+                            <td><?php echo $productData->mediumSize; ?></td>
+                            <td><?php echo $productData->largeSize; ?></td>
+                            <td><?php echo $productData->total; ?></td>
                         </tr>
 
                     <?php

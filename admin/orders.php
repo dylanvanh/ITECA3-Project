@@ -59,7 +59,7 @@ if (isset($_POST['completeAllOrders'])) {
             $ordersSelectStatement = 'SELECT * FROM orders WHERE completed = 0';
             $ordersResult = mysqli_query($conn, $ordersSelectStatement);
 
-            //calculate total price an individual order
+            //get users details for individual order
             while ($orderData = mysqli_fetch_array($ordersResult)) {
                 //gets the data of the user who placed the order
                 $userDetailsQuery = "SELECT * FROM users WHERE id = '" . $orderData['userId'] . "'";
@@ -120,7 +120,7 @@ if (isset($_POST['completeAllOrders'])) {
                                     <i class="bi bi-view-stacked"></i>
                                     View details
                                 </button>
-                                <form method="post" name="completeOrderForm" action="">
+                                <form    method="post" name="completeOrderForm" action="">
                                     <input type="hidden" name="id" value="<?php echo $orderData['id'] ?>">
                                     <button class="btn btn-success" type="submit" name="completeOrder">Complete</button>
                                 </form>
