@@ -47,12 +47,17 @@ if (!isset($_SESSION['userLoggedIn'])) {
                                 $orderItemsSelectStatement = "SELECT * FROM orderItems WHERE orderId = '$orderData[id]'";
                                 $orderItemsResult = mysqli_query($conn, $orderItemsSelectStatement);
                                 while ($orderItemsData = mysqli_fetch_array($orderItemsResult)) {
+                                    $productId = $orderItemsData['productId'];
+                                    $productNameSelectStatement = "SELECT name FROM products WHERE id = '$productId'";
+                                    $productNameResult = mysqli_query($conn, $productNameSelectStatement);
+                                    $productNameData = mysqli_fetch_array($productNameResult);
+                                    $productName = $productNameData['name'];
                                 ?>
                                     <!-- Items details -->
                                     <div class="container">
                                         <div class="left mr-5">
                                             <h3>ID:</h3>
-                                            <p><?php echo $orderItemsData['id']; ?></p>
+                                            <p><?php echo $productName; ?></p>
                                             <h3>Quantity:</h3>
                                             <p><?php echo $orderItemsData['quantity']; ?></p>
                                             <h3>Size:</h3>

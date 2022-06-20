@@ -17,13 +17,15 @@ include('adminNavbar.php');
             height: 300px;
         }
     </style>
-    <title>Document</title>
+    <title>Admin Products</title>
 </head>
 
 <body>
-    <h1>Products Page</h1>
+    <div class="container text-center">
+        <h1 class="text-center my-3">Products Page</h1>
+        <a class="btn btn-primary" class="center-block" href="createProduct.php">Create product</a>
+    </div>
 
-    <a class="btn btn-primary" href="createProduct.php">Create product</a>
 
     <div class="container py-5 my-5 mx-auto border">
         <div class="row row-cols-1 row-cols-md-4 g-4">
@@ -54,8 +56,6 @@ include('adminNavbar.php');
                                             <p><?php echo $productData['description']; ?></p>
                                             <h3>ID : <?php echo $productData['id']; ?></h3>
                                             <h3>Visibility : <?php echo $productData['visible'] == '1' ? 'Visible' : 'Hidden'; ?></h3>
-
-
                                         </div>
                                         <div class="right">
                                             <img class="productImage" src="<?php echo $productData['imageUrl']; ?>" alt="">

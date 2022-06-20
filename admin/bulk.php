@@ -25,8 +25,6 @@ class BulkOrderItem
     }
 }
 
-// [1 => [name => 'hat', largeSize => 2, mediumSize => 0, smallSize = 1, total]
-
 
 // if admin not logged in -> route to login
 if (!isset($_SESSION['adminLoggedIn'])) {
@@ -56,8 +54,8 @@ while ($orderData = mysqli_fetch_array($ordersResult)) {
         $foundMatch = false;
         //track the index of the found match
 
+        //index for tracking the current product in the bulkProductsOrder array
         $index = 0;
-        //check if productId already in the bulkProductsOrder array
 
 
         //check if product object already exists in the bulkProductsOrder array
@@ -131,11 +129,11 @@ while ($orderData = mysqli_fetch_array($ordersResult)) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Orders</title>
+    <title>Admin Bulk</title>
 </head>
 
 <body>
-    <h1>Bulk Order Required</h1>
+    <h1 class="text-center my-3">Bulk Order Required</h1>
 
     <div class="container py-5 my-5 mx-auto border">
         <div class="row row-cols-1 row-cols-md-4 g-4">

@@ -94,25 +94,25 @@ if (isset($_POST["createProduct"])) {
 </head>
 
 <body>
-    <h1>Create Product Page</h1>
+    <h1 class="text-center my-3">Create Product Page</h1>
+
     <!-- form to create a product -->
-    <div class="container">
-        <form method="post" enctype="multipart/form-data" action="" name="createProductForm">
+    <div class="container text-center">
+        <form   method="post" enctype="multipart/form-data" action="" name="createProductForm">
             <h3>Name:</h3>
             <input type="text" name="name">
             <h3>Descripion:</h3>
             <input type="text" name="description">
             <h3>Price:</h3>
             <input type="number" name="price">
-            <h3>Image:</h3>
             <h3> Upload Image</h3>
-            <input type="file" name="image" id="fileToUpload">
+            <input class="ms-5" type="file" name="image" id="fileToUpload">
             <br>
-            <button type="submit" value="productImage" name="createProduct">Create Product</button>
+            <br>
+            <button class="btn btn-primary" type="submit" value="productImage" name="createProduct">Create Product</button>
         </form>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
+</body> 
 
 </html>

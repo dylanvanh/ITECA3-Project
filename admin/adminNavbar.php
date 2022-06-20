@@ -17,16 +17,6 @@ if (isset($_POST['logout'])) {
 }
 ?>
 
-
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -69,7 +59,7 @@ if (isset($_POST['logout'])) {
                         <?php } ?>
                     </li>
                     <li class="nav-item">
-                    <?php if ($_SESSION['activePage'] == 'bulk') { ?>
+                        <?php if ($_SESSION['activePage'] == 'bulk') { ?>
                             <!-- Page active -->
                             <a class="nav-link active" aria-current="page" href="#">Bulk</a>
                         <?php } else { ?>
