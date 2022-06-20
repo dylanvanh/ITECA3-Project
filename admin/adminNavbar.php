@@ -88,7 +88,6 @@ if (isset($_POST['logout'])) {
                             </ul>
                         </form>
                     <?php endif; ?>
-             
                 </div>
             </div>
         </div>
