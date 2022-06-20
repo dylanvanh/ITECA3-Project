@@ -90,7 +90,7 @@ while ($orderData = mysqli_fetch_array($ordersResult)) {
         } else {
 
             //get productName from products table
-            $productNameSelectStatement = "SELECT * FROM pdroducts WHERE id = '$productId'";
+            $productNameSelectStatement = "SELECT * FROM products WHERE id = '$productId'";
             $productNameResult = mysqli_query($conn, $productNameSelectStatement);
             $productNameData = mysqli_fetch_array($productNameResult);
             $productName = $productNameData['name'];
