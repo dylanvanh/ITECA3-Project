@@ -20,7 +20,7 @@ include('../controllers/orders.php');
     <div class="container py-5 my-5 mx-auto border">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <?php
-            $ordersSelectStatement = 'SELECT * FROM orders WHERE userId = ' . $_SESSION['userId'];
+            $ordersSelectStatement = 'SELECT * FROM orders WHERE userId = ' . $_SESSION['userId'] . ' ORDER BY date DESC';
             $ordersResult = mysqli_query($conn, $ordersSelectStatement);
 
             //calculate total price an individual order

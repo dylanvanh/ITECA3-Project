@@ -1,6 +1,6 @@
 <?php
-
-include('../../connection.php');
+include('../../include/connection.php');
+include('../../include/customerNavbar.php');
 
 //Sign up form submitted
 if (isset($_POST['signUp'])) {
@@ -41,7 +41,7 @@ if (isset($_POST['signUp'])) {
 
             //checks if the user was in the process of checking out , before sigining in
             if (isset($_SESSION['userTryingToCheckout'])) {
-                header('Location: /ITECA3-Project/customer/checkout.php');
+                header('Location: /ITECA3-Project/customer/views/checkout.php');
             } else {
                 header("Location: /ITECA3-Project/index.php");
             }

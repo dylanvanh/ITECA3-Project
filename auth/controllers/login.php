@@ -1,5 +1,7 @@
 <?php
-include('../../connection.php');
+include('../../include/session.php');
+include('../../include/connection.php');
+include('../../include/customerNavbar.php');
 
 //login form submitted
 if (isset($_POST['login'])) {
@@ -31,7 +33,7 @@ if (isset($_POST['login'])) {
         //if admin (1) -> isAdmin = true
         //route to admin home page
         $_SESSION['adminLoggedIn'] = True;
-        header("Location: /ITECA3-Project/admin/users.php");
+        header("Location: /ITECA3-Project/admin/views/users.php");
       } else {
         //if normal user (0) -> isAdmin = false
         //route to user home page
@@ -40,7 +42,7 @@ if (isset($_POST['login'])) {
 
         //checks if the user was in the process of checking out , before sigining in
         if (isset($_SESSION['userTryingToCheckout'])) {
-          header('location: /ITECA3-Project/customer/checkout.php');
+          header('location: /ITECA3-Project/customer/views/checkout.php');
         } else {
           header("Location: /ITECA3-Project/index.php");
         }

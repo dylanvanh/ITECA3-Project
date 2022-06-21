@@ -1,5 +1,5 @@
 <?php
-include("../controller/login.php");
+include("../controllers/login.php");
 ?>
 
 <!doctype html>
@@ -9,28 +9,12 @@ include("../controller/login.php");
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 
   <title>Login</title>
 </head>
 
 <body>
-
-  <nav class="navbar navbar-expand-sm bg-light navbar-light">
-    <div class="container justify-content-center">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="../../index.php">Shop</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../signup/signup.php">SignUp</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
   <div class="container py-5 h-100">
     <form method="post" action="login.php" name="form">
       <div class="row d-flex justify-content-center align-items-center">
@@ -57,7 +41,7 @@ include("../controller/login.php");
               </div>
 
               <div>
-                <p class="mb-0">Don't have an account? <a href="../signup/signup.php" class="text-white-50 fw-bold">Sign Up</a>
+                <p class="mb-0">Don't have an account? <a href="signup.php" class="text-white-50 fw-bold">Sign Up</a>
                 </p>
               </div>
             </div>

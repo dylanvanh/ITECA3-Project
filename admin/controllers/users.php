@@ -1,5 +1,6 @@
 <?php
-include('../session.php');
+include('../../include/session.php');
+include('../../include/connection.php');
 $_SESSION['activePage'] = 'users';
-include('adminNavbar.php');
+include('../../include/adminNavbar.php');
 ?>

@@ -27,7 +27,7 @@ include("../controllers/orders.php");
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <?php
 
-            $ordersSelectStatement = 'SELECT * FROM orders WHERE completed = 0';
+            $ordersSelectStatement = 'SELECT * FROM orders WHERE completed = 0 ORDER BY date DESC';
             $ordersResult = mysqli_query($conn, $ordersSelectStatement);
 
             //get users details for individual order

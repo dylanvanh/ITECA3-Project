@@ -1,8 +1,8 @@
 <?php
-
-include('../session.php');
+include('../models/cartItem.php');
+include('../../include/connection.php');
+include('../../include/customerNavbar.php');
 $_SESSION['activePage'] = 'cart';
-include('../userNavbar.php');
 
 $cart = unserialize($_SESSION['cart']);
 
@@ -14,15 +14,11 @@ $subTotal = 0;
 //initial total value
 $total = 0;
 
-//implement an order summary -> like takealot
-
-
-
 if (isset($_POST['clearCart'])) {
     //retrieve existing cart data
 
     $_SESSION['cart'] = serialize([]);
-    header("Location: /ITECA3-Project/customer/cart.php");
+    header("Location: /ITECA3-Project/customer/views/cart.php");
 }
 
 
@@ -31,8 +27,6 @@ if (isset($_POST['checkoutCart'])) {
     $cart = unserialize($_SESSION['cart']);
 
     $_SESSION['cart'] = serialize($cart);
-
-    echo "Test";
 
     //user is logged in
     if ($_SESSION['userLoggedIn'] == True) {
@@ -45,7 +39,7 @@ if (isset($_POST['checkoutCart'])) {
             header("Location: /ITECA3-Project/index.php");
         }
     } else {
-        header("Location : login.php");
+        header("Location : ../../auth/views/login.php");
     }
 }
 
@@ -72,6 +66,7 @@ if (isset($_POST['deleteCartItem'])) {
 }
 
 
+//when the user clicks the update cart button
 if (isset($_POST['updateCartItemQuantity'])) {
 
     //need id of item to update

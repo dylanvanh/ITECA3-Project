@@ -1,7 +1,9 @@
 <?php
-include('../session.php');
+include('../../include/session.php');
+include('../../include/connection.php');
 $_SESSION['activePage'] = 'createProduct';
-include('adminNavbar.php');
+include('../../include/adminNavbar.php');
+
 
 
 // if admin not logged in -> route to login
@@ -13,7 +15,7 @@ if (!isset($_SESSION['adminLoggedIn'])) {
 if (isset($_POST["createProduct"])) {
 
     //location where the file will be stored
-    $target_dir = "../assets/";
+    $target_dir = "../../assets/";
     // $target_dir = "../assets/";   
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
     echo $target_file;
@@ -35,7 +37,7 @@ if (isset($_POST["createProduct"])) {
     }
 
     // Check file size
-    if ($_FILES["image"]["size"] > 500000) {
+    if ($_FILES["image"]["size"] > 900000) {
         echo "Sorry, your file is too large.";
         $errorsFound = true;
     }
@@ -51,7 +53,7 @@ if (isset($_POST["createProduct"])) {
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
             echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
         } else {
-            echo "Error uplading file.";
+            echo "Error uploading image.";
             $errorsFound = true;
         }
     } else {
@@ -74,7 +76,7 @@ if (isset($_POST["createProduct"])) {
 
         if (mysqli_query($conn, $productInsertQuery)) {
             echo "New product created successfully.";
-            header("Location: /ITECA3-Project/admin/products.php");
+            header("Location: /ITECA3-Project/admin/views/products.php");
         } else {
             echo "Error: " . $productInsertQuery . "<br>" . mysqli_error($conn);
         }

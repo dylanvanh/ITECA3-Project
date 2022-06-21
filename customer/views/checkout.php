@@ -22,7 +22,7 @@ include('../controllers/checkout.php')
 <body>
 
     <h1>Checkout screen</h1>
-    <form method="post" name="placeOrderForm" action="cart.php" class="container">
+    <form method="post" name="placeOrderForm" action="" class="container">
         <div class="container">
             <?php
             //calculate total

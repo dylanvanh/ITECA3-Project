@@ -1,8 +1,9 @@
 <?php
-include('../session.php');
+include('../../include/session.php');
+include('../../include/connection.php');
 $_SESSION['activePage'] = 'bulk';
-include('adminNavbar.php');
-include('./models/bulkOrderItem.php');
+include('../../include/adminNavbar.php');
+include('../models/bulkOrderItem.php');
 
 
 // if admin not logged in -> route to login
@@ -36,7 +37,7 @@ while ($orderData = mysqli_fetch_array($ordersResult)) {
         //index for tracking the current product in the bulkProductsOrder array
         $index = 0;
 
- 
+
         //check if product object already exists in the bulkProductsOrder array
         foreach ($bulkProductsOrder as $product) {
             if ($product->productId == $productId) {

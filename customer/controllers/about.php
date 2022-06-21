@@ -1,4 +1,4 @@
 <?php
-include('session.php');
+include('../../include/session.php');
 $_SESSION['activePage'] = 'about';
-include('userNavbar.php');
+include('../../include/customerNavbar.php');

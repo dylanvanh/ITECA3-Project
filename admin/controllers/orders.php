@@ -1,7 +1,8 @@
 <?php
-include('../session.php');
+include('../../include/session.php');
+include('../../include/connection.php');
 $_SESSION['activePage'] = 'orders';
-include('adminNavbar.php');
+include('../../include/adminNavbar.php');
 
 if (isset($_POST['completeOrder'])) {
     $id = $_POST['id'];

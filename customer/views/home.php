@@ -41,7 +41,7 @@ include('../controllers/home.php');
                                 <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                             </div>
                             <div class='modal-body'>
-                                <form method="post" name="addToCartForm" action="index.php">
+                                <form method="post" name="addToCartForm" action="">
 
                                     <!-- Item info -->
                                     <div class="container d-flex">
