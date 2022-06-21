@@ -78,7 +78,10 @@ if (isset($_POST['logout'])) {
                         <form action="/ITECA3-Project/index.php" method="post" name="form">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item px-3">
-                                    <button class="nav-link btn btn-outline-danger" type="submit" name="logout">Logout</button>
+                                    <button class="btn btn-outline-danger" type="submit" name="logout">
+                                        <i class="bi bi-box-arrow-left"></i>
+                                        Logout
+                                    </button>
                                 </li>
                             </ul>
                         </form>

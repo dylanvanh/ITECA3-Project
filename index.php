@@ -24,9 +24,11 @@ $cart = unserialize($_SESSION['cart']);
     <title>Home</title>
 </head>
 
-<body>
+<body class="backColor">
 
-    <div class="container py-5 my-5 mx-auto border">
+    <h1 class="text-center my-3">Shop</h1>
+
+    <div class="container py-5 my-5 mx-auto border card">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <?php
             $productsSelectStatement = 'SELECT * FROM products WHERE visible = TRUE';
