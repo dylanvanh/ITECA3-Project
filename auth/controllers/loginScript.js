@@ -10,7 +10,6 @@ const password = document.getElementsByName('password')[0];
 var allChecksPassed;
 
 form.addEventListener('submit', (event) => {
-    console.log('test');
 
     //gets set to false if any validation fails 
     allChecksPassed = true
@@ -39,7 +38,6 @@ const validateInputs = () => {
 
     //email validation
     if (email.value.trim() == "") {
-        console.log(email.value);
         //blank email
         allChecksPassed = false;
     } else if (!validateEmail) {

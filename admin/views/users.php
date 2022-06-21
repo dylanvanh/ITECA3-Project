@@ -1,7 +1,5 @@
 <?php
-include('../session.php');
-$_SESSION['activePage'] = 'users';
-include('adminNavbar.php');
+include("../controllers/users.php");
 ?>
 
 <!DOCTYPE html>

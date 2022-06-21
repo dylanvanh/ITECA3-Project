@@ -1,24 +1,12 @@
-<!DOCTYPE html>
 <?php
-include('session.php');
-include('server.php');
+// include('../../include/session.php');
 
 //login form submitted
 if (isset($_POST['logout'])) {
     session_destroy();
-    header("Location: index.php");
+    header("Location: /ITECA3-Project/index.php");
 }
 ?>
-
-
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 
 <body>
     <!-- Navbar -->
@@ -51,7 +39,7 @@ if (isset($_POST['logout'])) {
                                 <a class="nav-link active" aria-current="page" href="#">Orders</a>
                             <?php } else { ?>
                                 <!-- Page not active -->
-                                <a class="nav-link" aria-current="page" href="/ITECA3-Project/customer/orders.php">Orders</a>
+                                <a class="nav-link" aria-current="page" href="/ITECA3-Project/customer/views/orders.php">Orders</a>
                             <?php } ?>
                         </li>
                     <?php endif; ?>
@@ -61,7 +49,7 @@ if (isset($_POST['logout'])) {
                             <a class="nav-link active" aria-current="page" href="#">About</a>
                         <?php } else { ?>
                             <!-- Page not active -->
-                            <a class="nav-link" aria-current="page" href="/ITECA3-Project/about.php">About</a>
+                            <a class="nav-link" aria-current="page" href="/ITECA3-Project/customer/views/about.php">About</a>
                         <?php } ?>
                     </li>
                 </ul>
@@ -70,12 +58,12 @@ if (isset($_POST['logout'])) {
                     <?php if (empty($_SESSION['userLoggedIn'])) : ?>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item px-3">
-                                <a class="btn btn-primary" href="/ITECA3-Project/auth/login/login.php">Login</a>
+                                <a class="btn btn-primary" href="/ITECA3-Project/auth/views/login.php">Login</a>
                             </li>
                         </ul>
                     <?php endif; ?>
                     <?php if (!empty($_SESSION['userLoggedIn'])) : ?>
-                        <form action="/ITECA3-Project/index.php" method="post" name="form">
+                        <form action="/ITECA3-Project/customer/views/home.php" method="post" name="form">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item px-3">
                                     <button class="btn btn-outline-danger" type="submit" name="logout">
@@ -86,7 +74,7 @@ if (isset($_POST['logout'])) {
                             </ul>
                         </form>
                     <?php endif; ?>
-                    <a href="/ITECA3-Project/customer/cart.php">
+                    <a href="/ITECA3-Project/customer/views/cart.php">
                         <button class="btn btn-outline-success" type="submit">
                             <i class="bi-cart-fill"></i>
                             Cart

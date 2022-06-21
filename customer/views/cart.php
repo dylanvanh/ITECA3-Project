@@ -1,27 +1,9 @@
 <?php
-include('../session.php');
-$_SESSION['activePage'] = 'cart';
-include('../userNavbar.php');
-
-$cart = unserialize($_SESSION['cart']);
-
-$fixedOperationsCost = 25;
-
-//initial subTotal value
-$subTotal = 0;
-
-//initial total value
-$total = 0;
-
-//implement an order summary -> like takealot
-
+include('../controllers/cart.php');
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
-
 
 <head>
     <meta charset="UTF-8">
@@ -29,29 +11,25 @@ $total = 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-
     <style>
         .backColor {
             background-color: #eee;
         }
-
-        .total{
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
     </style>
 </head>
 
+
 <body class="backColor">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center">
             <div class="col">
                 <div class="card">
                     <div class="card-body p-4">
                         <div class="row">
                             <div class="col-lg-7">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
-                                
+
                                     <div>
                                         <p class="mb-1">Shopping cart</p>
                                         <p class="mb-0">You have <?php echo count($cart) ?> items in your cart</p>
@@ -78,7 +56,7 @@ $total = 0;
                                                 </div>
                                                 <div class="d-flex flex-row align-items-center">
                                                     <label for="amount">Qty</label>
-                                                    <form method="post" name="updateCartItemQuantityForm" action="cart.php" class="container d-=fle">
+                                                    <form method="post" name="updateCartItemQuantityForm" action="cart.php" class="container">
                                                         <select class="form-select" name="quantity" id="quantity">
                                                             <option value="1" <?= ($cart[$i]->quantity == '1') ? 'selected' : ''; ?>>1</option>
                                                             <option value="2" <?= ($cart[$i]->quantity == '2') ? 'selected' : ''; ?>>2</option>
@@ -92,7 +70,7 @@ $total = 0;
                                                             <option value="10" <?= ($cart[$i]->quantity == '10') ? 'selected' : ''; ?>>10</option>
                                                         </select>
                                                         <input type="hidden" name="id" value="<?php echo $cart[$i]->id ?>">
-                                                        <button type='submit' name="updateCartItemQuantity" class='btn btn-primary'>
+                                                        <button type='submitFORM' name="updateCartItemQuantity" class='btn btn-primary'>
                                                             <i class="bi bi-list-ol"></i> Update</button>
                                                     </form>
                                                     <form method="post" name="deleteCartItemForm" action="cart.php" class="container d-flex">
@@ -120,8 +98,18 @@ $total = 0;
                                     ?>
                                     <p>Subtotal : R<?php echo $subTotal ?></p>
                                     <p>Operations Cost : <?php echo $fixedOperationsCost ?></p>
-                                    <p>Total : <span class="total">R<?php echo $total ?></span></p>
-
+                                    <h3>Total : R<?php echo $total ?></h3>
+                                    <?php
+                                    if ($subTotal != 0) {
+                                        echo '
+                                        <div class="container">
+                                            <span><a class="btn btn-primary" href="checkout.php">Checkout</a></span>
+                                            <form method="post" name="clearCartForm" action="cart.php" class="container d-flex">
+                                                <button type="submit" name="clearCart" class="btn btn-danger">Clear Cart </button>
+                                            </form>
+                                        </div>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
