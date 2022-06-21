@@ -2,31 +2,7 @@
 
 include('session.php');
 include('connection.php');
-
-
-// class representing a single product item in the cart
-class CartItem
-{
-    // Properties
-    public $id;
-    public $name;
-    public $price;
-    public $quantity;
-    public $description;
-    public $imageUrl;
-    public $size;
-
-    function __construct($id, $name, $price, $quantity, $imageUrl, $size)
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->price = $price;
-        $this->quantity = $quantity;
-        $this->imageUrl = $imageUrl;
-        $this->size = $size;
-    }
-}
-
+include('models/cartitem.php');
 
 //checks if cart exists
 if (!isset($_SESSION['cart'])) {
@@ -98,87 +74,6 @@ if (isset($_POST['addToCart'])) {
     header("Location: /ITECA3-Project/index.php");
 }
 
-if (isset($_POST['updateCartItemQuantity'])) {
-
-    //need id of item to update
-    //need quantity to update
-    $id = $_POST['id'];
-    $quantity = $_POST['quantity'];
-
-    // echo $id;
-    // echo "<br>";
-    // echo $quantity;
-
-    //retrieve existing cart data
-    $cart = unserialize($_SESSION['cart']);
-
-    //set the quantity to the new value
-    for ($i = 0; $i < count($cart); $i++) {
-        //check if the id provided in cart matches the id provided in the form
-        if ($cart[$i]->id == $id) {
-            //set the quantity to the new value
-            $cart[$i]->quantity = $quantity;
-            //end looping
-            break;
-        }
-    }
-
-    $_SESSION['cart'] = serialize($cart);
-}
-
-
-if (isset($_POST['deleteCartItem'])) {
-
-    //required id of the item to be deleted
-    $id = $_POST['id'];
-
-
-    //retrieve existing cart data
-    $cart = unserialize($_SESSION['cart']);
-
-    //set the quantity to the new value
-    for ($i = 0; $i < count($cart); $i++) {
-        //check if the id provided in cart matches the id provided in the form
-        if ($cart[$i]->id == $id) {
-            //remove cartItem object from cart array
-            unset($cart[$i]);
-        }
-    }
-
-    $_SESSION['cart'] = serialize($cart);
-}
-
-
-if (isset($_POST['clearCart'])) {
-    //retrieve existing cart data
-
-    $_SESSION['cart'] = serialize([]);
-    header("Location: /ITECA3-Project/customer/cart.php");
-}
-
-
-if (isset($_POST['checkoutCart'])) {
-    //retrieve existing cart data
-    $cart = unserialize($_SESSION['cart']);
-
-    $_SESSION['cart'] = serialize($cart);
-
-    echo "Test";
-
-    //user is logged in
-    if ($_SESSION['userLoggedIn'] == True) {
-
-        //check that the cart is not empty
-        if (count($cart) > 0) {
-            //route to checkout page
-            header("Location: checkout.php");
-        } else {
-            header("Location: /ITECA3-Project/index.php");
-        }
-    } else {
-        header("Location : login.php");
-    }
-}
 
 
 //create order based on location specified for the user
@@ -238,7 +133,6 @@ if (isset($_POST['placeOrder'])) {
 
 
 //ADMIN OPTIONS
-
 if (isset($_POST['toggleProductVisibility'])) {
 
     //required id of the item to be deleted

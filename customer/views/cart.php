@@ -1,23 +1,6 @@
 <?php
-include('../session.php');
-$_SESSION['activePage'] = 'cart';
-include('../userNavbar.php');
-
-$cart = unserialize($_SESSION['cart']);
-
-$fixedOperationsCost = 25;
-
-//initial subTotal value
-$subTotal = 0;
-
-//initial total value
-$total = 0;
-
-//implement an order summary -> like takealot
-
+include("../controllers/cart.php");
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">

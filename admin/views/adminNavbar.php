@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include('../session.php');
 include('../server.php');
