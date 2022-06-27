@@ -20,7 +20,7 @@ include('../controllers/signup.php');
         <form method="post" action="signup.php" name="form">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card bg-primary text-white" style="border-radius: 3rem;">
+                    <div class="card bg-dark bg-gradient text-white" style="border-radius: 3rem;">
                         <div class="card-body p-5 text-center">
 
                             <div class="-5 mt-md-4 pb-5">
@@ -50,7 +50,7 @@ include('../controllers/signup.php');
                                 </div>
 
 
-                                <button class="btn btn- btn-lg px-5" type="submit" name="signUp">Sign Up</button>
+                                <button class="btn btn-outline-light btn-lg px-5" type="submit" name="signUp">Sign Up</button>
 
                             </div>
 
