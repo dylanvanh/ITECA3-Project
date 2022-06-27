@@ -55,7 +55,7 @@ include('../controllers/signup.php');
                             </div>
 
                             <div>
-                                <p class="mb-0">Have an account? <a href="login.php" class="text-black fw-bold">Login</a>
+                                <p class="mb-0">Have an account? <a href="login.php" class="text-white-50 fw-bold">Login</a>
                                 </p>
                             </div>
                         </div>

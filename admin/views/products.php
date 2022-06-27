@@ -15,6 +15,10 @@ include("../controllers/products.php");
         .productImage {
             height: 300px;
         }
+        .modalImage{
+            height:300px;
+            width:220px
+        }
     </style>
     <title>Admin Products</title>
 </head>
@@ -43,7 +47,6 @@ include("../controllers/products.php");
                             </div>
                             <div class='modal-body'>
                                 <form method="post" name="toggleProductVisibilityForm" action="">
-
                                     <!-- Item info -->
                                     <div class="container d-flex">
                                         <div class="left mr-5">
@@ -56,8 +59,8 @@ include("../controllers/products.php");
                                             <h3>ID : <?php echo $productData['id']; ?></h3>
                                             <h3>Visibility : <?php echo $productData['visible'] == '1' ? 'Visible' : 'Hidden'; ?></h3>
                                         </div>
-                                        <div class="right">
-                                            <img class="productImage" src="<?php echo $productData['imageUrl']; ?>" alt="">
+                                        <div class="px-5">
+                                            <img class="modalImage" src="<?php echo $productData['imageUrl']; ?>" alt="">
                                         </div>
                                     </div>
                             </div>
@@ -72,7 +75,7 @@ include("../controllers/products.php");
                 <!-- Product Card Display -->
                 <div class='col'>
                     <div class='card'>
-                        <img src=<?php echo $productData['imageUrl']; ?> class='card-img-top productImage ' alt='...'>
+                        <img src=<?php echo $productData['imageUrl']; ?> class='card-img-top productImage' alt='...'>
                         <div class='card-body'>
                             <h5 class='card-title'><?php echo $productData['name'] ?></h5>
                             <p class='card-text'>R<?php echo $productData['price'] ?></p>

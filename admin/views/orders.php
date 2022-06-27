@@ -47,8 +47,6 @@ include("../controllers/orders.php");
                             </div>
                             <div class='modal-body'>
                                 <?php
-
-
                                 $orderItemsSelectStatement = "SELECT * FROM orderItems WHERE orderId = '$orderData[id]'";
                                 $orderItemsResult = mysqli_query($conn, $orderItemsSelectStatement);
                                 while ($orderItemsData = mysqli_fetch_array($orderItemsResult)) {

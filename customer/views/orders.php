@@ -14,9 +14,7 @@ include('../controllers/orders.php');
 </head>
 
 <body class="backColor">
-    <h1>Orders</h1>
-
-
+    <h1 class="text-center my-3">Orders</h1>
     <div class="container py-5 my-5 mx-auto border">
         <div class="row row-cols-1 row-cols-md-4 g-4">
             <?php
@@ -49,7 +47,7 @@ include('../controllers/orders.php');
                                     <!-- Items details -->
                                     <div class="container">
                                         <div class="left mr-5">
-                                            <h3>ID:</h3>
+                                            <h3>Name:</h3>
                                             <p><?php echo $productName; ?></p>
                                             <h3>Quantity:</h3>
                                             <p><?php echo $orderItemsData['quantity']; ?></p>
