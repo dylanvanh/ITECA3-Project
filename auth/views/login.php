@@ -31,13 +31,13 @@ include("../controllers/login.php");
                 <div class="mb-4">
                   <label class="form-label" for="email">Email</label>
                   <input type="email" name="email" class="form-control form-control-lg" />
-                  <span class="error-message" name="email-error">
+                  <span class="error-message" name="email-error"></span>
                 </div>
 
                 <div class="mb-4">
                   <label class="form-label" for="password">Password</label>
                   <input type="password" name="password" class="form-control form-control-lg" />
-                  <span class="error-message" name="password-error">
+                  <span class="error-message" name="password-error"></span>
                 </div>
 
                 <button class="btn btn-outline-light btn-lg px-5" type="submit" name="login">Login</button>
