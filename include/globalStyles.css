@@ -1,3 +1,8 @@
 .backColor {
     background-color: #eee;
 }
+
+.error-message{
+  color:red;
+  font-size: small;
+}

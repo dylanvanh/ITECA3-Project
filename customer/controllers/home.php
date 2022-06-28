@@ -26,14 +26,14 @@ if (isset($_POST['addToCart'])) {
     // matching item = (same id & same size ) already in cart
     for ($i = 0; $i < count($cart); $i++) {
         //if it finds a matching cartItem 
-        // echo 'id = ',gettype($cart[$i]) . "<br>";
+        // echo 'id = ',gett    ype($cart[$i]) . "<br>";
 
         if (($cart[$i]->id == $id) && ($cart[$i]->size == $size)) {
             $matchFound = true;
             echo "found match";
             //increase quantity by 1
             $cart[$i]->quantity += 1;
-            //end looping
+            //end looping 
             break;
         }
     }

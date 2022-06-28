@@ -3,6 +3,28 @@ include('../../include/session.php');
 include('../../include/connection.php');
 include('../../include/customerNavbar.php');
 
+//cleans the submitted form data
+function cleanData($formData)
+{
+  //remove whitespace
+  $cleanedData = trim($formData);
+  //removes raw html tags
+  $cleanedData = htmlspecialchars($cleanedData);
+  //remove any back slashes
+  $cleanedData = stripslashes($cleanedData);
+  return $cleanedData;
+}
+
+//uses regex to check if string contains a number
+//used in the fName and lName validation
+function containsNumber($value){
+  if(preg_match("~[0-9]+~",$value)){
+    return TRUE;
+  }
+  return FALSE;
+}
+
+
 //login form submitted
 if (isset($_POST['login'])) {
 
