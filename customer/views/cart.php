@@ -46,17 +46,17 @@ include('../controllers/cart.php');
                                             <div class="d-flex justify-content-between">
                                                 <div class="d-flex flex-row align-items-center">
                                                     <div>
-                                                        <img src="<?php echo $cart[$i]->imageUrl ?>" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                        <img style="width: 80px;" src="<?php echo $cart[$i]->imageUrl ?>" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                                                     </div>
-                                                    <div class="ms-3">
-                                                        <h5><?php echo $cart[$i]->name ?></h5>
+                                                    <div class="px-5">
+                                                        <h5 class="pl-5" style="width: 100px;"><?php echo $cart[$i]->name ?></h5>
                                                         <p class="small mb-0">Size: <?php echo $cart[$i]->size ?></p>
                                                     </div>
                                                 </div>
-                                                <div class="d-flex flex-row align-items-center">
+                                                <div class="d-flex flex-row align-items-center ">
                                                     <label for="amount">Qty</label>
                                                     <form method="post" name="updateCartItemQuantityForm" action="cart.php" class="container">
-                                                        <div class="container">
+                                                        <div class="container" style="width: 150px;">
                                                             <select class="form-select" name="quantity" id="quantity">
                                                                 <option value="1" <?= ($cart[$i]->quantity == '1') ? 'selected' : ''; ?>>1</option>
                                                                 <option value="2" <?= ($cart[$i]->quantity == '2') ? 'selected' : ''; ?>>2</option>
@@ -104,9 +104,9 @@ include('../controllers/cart.php');
                                     if ($subTotal != 0) {
                                         echo '
                                         <div class="d-flex">
-                                            <span><a class="btn btn-primary" href="checkout.php">Checkout</a></span>
+                                            <span><a class="btn btn-outline-success" href="checkout.php">Checkout</a></span>
                                             <form method="post" name="clearCartForm" action="cart.php" class="container d-flex">
-                                                <button type="submit" name="clearCart" class="btn btn-danger">Clear Cart </button>
+                                                <button type="submit" name="clearCart" class="btn btn-outline-warning">Clear Cart </button>
                                             </form>
                                         </div>';
                                     }

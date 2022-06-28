@@ -91,8 +91,8 @@ include("../controllers/orders.php");
                             <p class='card-text'>Location: <?php echo $orderData['deliveryLocation'] ?></p>
                             <p class='card-text'>Order ID: <?php echo $orderData['id'] ?></p>
                             <p class='card-text'>Total: R<?php echo $orderData['totalCost'] ?></p>
-                            <div class='d-flex justify-content-between options'>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal<?php echo $orderData["id"] ?>" data-bs-whatever="@mdo">
+                            <div class='d-flex-column justify-content-between options'>
+                                <button type="button" class="btn btn-primary my-1" data-bs-toggle="modal" data-bs-target="#orderModal<?php echo $orderData["id"] ?>" data-bs-whatever="@mdo">
                                     <i class="bi bi-view-stacked"></i>
                                     View details
                                 </button>
