@@ -12,6 +12,10 @@ include('../controllers/cart.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="/ITECA3-Project/include/globalStyles.css" rel="stylesheet" />
+    <style>
+
+    </style>
+
 
 </head>
 
@@ -25,10 +29,9 @@ include('../controllers/cart.php');
                         <div class="row">
                             <div class="col-lg-7">
                                 <div cl ass="d-flex justify-content-between align-items-center mb-4">
-
                                     <div>
                                         <p class="mb-1">Shopping cart</p>
-                                        <p class="mb-0">You have <?php echo count($cart) ?> items in your cart</p>
+                                        <p class="mb-0">You have <span><?php echo count($cart) ?> items in your cart </span></p>
                                     </div>
                                 </div>
 
@@ -53,21 +56,23 @@ include('../controllers/cart.php');
                                                 <div class="d-flex flex-row align-items-center">
                                                     <label for="amount">Qty</label>
                                                     <form method="post" name="updateCartItemQuantityForm" action="cart.php" class="container">
-                                                        <select class="form-select" name="quantity" id="quantity">
-                                                            <option value="1" <?= ($cart[$i]->quantity == '1') ? 'selected' : ''; ?>>1</option>
-                                                            <option value="2" <?= ($cart[$i]->quantity == '2') ? 'selected' : ''; ?>>2</option>
-                                                            <option value="3" <?= ($cart[$i]->quantity == '3') ? 'selected' : ''; ?>>3</option>
-                                                            <option value="4" <?= ($cart[$i]->quantity == '4') ? 'selected' : ''; ?>>4</option>
-                                                            <option value="5" <?= ($cart[$i]->quantity == '5') ? 'selected' : ''; ?>>5</option>
-                                                            <option value="6" <?= ($cart[$i]->quantity == '6') ? 'selected' : ''; ?>>6</option>
-                                                            <option value="7" <?= ($cart[$i]->quantity == '7') ? 'selected' : ''; ?>>7</option>
-                                                            <option value="8" <?= ($cart[$i]->quantity == '8') ? 'selected' : ''; ?>>8</option>
-                                                            <option value="9" <?= ($cart[$i]->quantity == '9') ? 'selected' : ''; ?>>9</option>
-                                                            <option value="10" <?= ($cart[$i]->quantity == '10') ? 'selected' : ''; ?>>10</option>
-                                                        </select>
-                                                        <input type="hidden" name="id" value="<?php echo $cart[$i]->id ?>">
-                                                        <button type='submitFORM' name="updateCartItemQuantity" class='btn btn-primary'>
-                                                            <i class="bi bi-list-ol"></i> Update</button>
+                                                        <div class="container">
+                                                            <select class="form-select" name="quantity" id="quantity">
+                                                                <option value="1" <?= ($cart[$i]->quantity == '1') ? 'selected' : ''; ?>>1</option>
+                                                                <option value="2" <?= ($cart[$i]->quantity == '2') ? 'selected' : ''; ?>>2</option>
+                                                                <option value="3" <?= ($cart[$i]->quantity == '3') ? 'selected' : ''; ?>>3</option>
+                                                                <option value="4" <?= ($cart[$i]->quantity == '4') ? 'selected' : ''; ?>>4</option>
+                                                                <option value="5" <?= ($cart[$i]->quantity == '5') ? 'selected' : ''; ?>>5</option>
+                                                                <option value="6" <?= ($cart[$i]->quantity == '6') ? 'selected' : ''; ?>>6</option>
+                                                                <option value="7" <?= ($cart[$i]->quantity == '7') ? 'selected' : ''; ?>>7</option>
+                                                                <option value="8" <?= ($cart[$i]->quantity == '8') ? 'selected' : ''; ?>>8</option>
+                                                                <option value="9" <?= ($cart[$i]->quantity == '9') ? 'selected' : ''; ?>>9</option>
+                                                                <option value="10" <?= ($cart[$i]->quantity == '10') ? 'selected' : ''; ?>>10</option>
+                                                            </select>
+                                                            <input type="hidden" name="id" value="<?php echo $cart[$i]->id ?>">
+                                                            <button type='submitFORM' name="updateCartItemQuantity" class='btn btn-primary'>
+                                                                <i class="bi bi-list-ol"></i>Update</button>
+                                                        </div>
                                                     </form>
                                                     <form method="post" name="deleteCartItemForm" action="cart.php" class="container d-flex">
                                                         <input type="hidden" name="id" value="<?php echo $cart[$i]->id ?>">
@@ -85,7 +90,7 @@ include('../controllers/cart.php');
                                 <?php
                                 }
                                 ?>
-                                <div class="container">
+                                <div class="container d-flex-column">
                                     <?php
                                     //calculate total
                                     if ($subTotal != 0) {
@@ -98,7 +103,7 @@ include('../controllers/cart.php');
                                     <?php
                                     if ($subTotal != 0) {
                                         echo '
-                                        <div class="container">
+                                        <div class="d-flex">
                                             <span><a class="btn btn-primary" href="checkout.php">Checkout</a></span>
                                             <form method="post" name="clearCartForm" action="cart.php" class="container d-flex">
                                                 <button type="submit" name="clearCart" class="btn btn-danger">Clear Cart </button>
