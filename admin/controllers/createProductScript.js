@@ -2,15 +2,13 @@
 //input field elements
 const form = document.getElementsByName('form')[0];
 const name = document.getElementsByName('name')[0];
-const email = document.getElementsByName('email')[0];
-const phoneNumber = document.getElementsByName('phoneNumber')[0];
-const password = document.getElementsByName('password')[0];
+const description = document.getElementsByName('description')[0];
+const price = document.getElementsByName('price')[0];
 
 //error elements
 const nameErrorElement = document.getElementsByName('name-error')[0];
-const emailErrorElement = document.getElementsByName('email-error')[0];
-const phoneNumberErrorElement = document.getElementsByName('phoneNumber-error')[0];
-const passwordErrorElement = document.getElementsByName('password-error')[0];
+const descriptionErrorElement = document.getElementsByName('description-error')[0];
+const priceErrorElement = document.getElementsByName('price-error')[0];
 
 
 //changes to false if any errors found
@@ -30,7 +28,7 @@ form.addEventListener('submit', (event) => {
         //prevents submission of form
         event.preventDefault();
         //show an alert stating invalid field
-        alert('Invalid Signup details entered');
+        alert('Invalid Product details entered');
     }
 
 })
@@ -70,36 +68,28 @@ const validateInputs = () => {
         removeErrorText(nameErrorElement);
     }
 
-    //email validation
-    if (email.value.trim() == "") {
-        errorDetected("Email blank", emailErrorElement);
+    //description validation
+    if (description.value.trim() == "") {
+        //set the field to "invalidated"
+        errorDetected("Description blank", descriptionErrorElement);
         allChecksPassed = false;
-    } else if (!validateEmail(email.value.trim())) {
+    } else if (validateName(description.value.trim())) {
         allChecksPassed = false;
-        errorDetected('Email invalid', emailErrorElement);
+        errorDetected("Description can't contain numbers", descriptionErrorElement);
     } else {
-        removeErrorText(emailErrorElement);
+        removeErrorText(descriptionErrorElement);
     }
 
-    //phoneNumber validation
-    if (phoneNumber.value.trim() == "") {
+    //price validation
+    if (price.value.trim() == "") {
         //set the field to "invalidated"
-        errorDetected("Phone number blank", phoneNumberErrorElement);
+        errorDetected("Price blank", priceErrorElement);
         allChecksPassed = false;
-    } else if (!validateName(phoneNumber.value.trim())) {
+    } else if (!validateName(price.value.trim())) {
         allChecksPassed = false;
-        errorDetected("Phone number can only contain numbers", phoneNumberErrorElement);
+        errorDetected("Price can only contain", priceErrorElement);
     } else {
-        removeErrorText(phoneNumberErrorElement);
-    }
-
-    //password validation
-    if (password.value.trim() == "") {
-        //set the field to "invalidated"
-        errorDetected("Password blank", passwordErrorElement);
-        allChecksPassed = false;
-    } else {
-        removeErrorText(passwordErrorElement);
+        removeErrorText(priceErrorElement);
     }
 }
 

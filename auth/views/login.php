@@ -18,7 +18,7 @@ include("../controllers/login.php");
 
 <body class="backColor">
   <div class="container py-5 h-100">
-    <form method="post" action="login.php" name="form">
+    <form method="post" action="" name="form">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card bg-dark bg-gradient text-white" style="border-radius: 3rem;">

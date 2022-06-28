@@ -26,7 +26,6 @@ form.addEventListener('submit', (event) => {
         //prevents submission of form
         event.preventDefault();
         //show an alert stating invalid field
-        console.log('Invalid details entered');
         alert('Invalid login details entered');
     }
 
