@@ -12,6 +12,13 @@ include('../controllers/orders.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="/ITECA3-Project/include/globalStyles.css" rel="stylesheet" />
     <title>Orders</title>
+    <style>
+        .modalImage {
+            max-width: 250px;
+            max-height: 250px;
+            margin-left: 2rem;
+        }
+    </style>
 </head>
 
 <body class="backColor">
@@ -40,13 +47,14 @@ include('../controllers/orders.php');
                                 $orderItemsResult = mysqli_query($conn, $orderItemsSelectStatement);
                                 while ($orderItemsData = mysqli_fetch_array($orderItemsResult)) {
                                     $productId = $orderItemsData['productId'];
-                                    $productNameSelectStatement = "SELECT name FROM products WHERE id = '$productId'";
-                                    $productNameResult = mysqli_query($conn, $productNameSelectStatement);
-                                    $productNameData = mysqli_fetch_array($productNameResult);
-                                    $productName = $productNameData['name'];
+                                    $productSelectStatement = "SELECT name,imageUrl FROM products WHERE id = '$productId'";
+                                    $productNameResult = mysqli_query($conn, $productSelectStatement);
+                                    $productData = mysqli_fetch_array($productNameResult);
+                                    $productName = $productData['name'];
+                                    $productImageUrl =  $productData['imageUrl'];
                                 ?>
                                     <!-- Items details -->
-                                    <div class="container">
+                                    <div class="container d-flex">
                                         <div class="left mr-5">
                                             <h3>Name:</h3>
                                             <p><?php echo $productName; ?></p>
@@ -56,6 +64,9 @@ include('../controllers/orders.php');
                                             <p><?php echo $orderItemsData['size']; ?></p>
                                             <h3>Cost:</h3>
                                             <p><?php echo $orderItemsData['cost']; ?></p>
+                                        </div>
+                                        <div class="right ml-5">
+                                            <img src="<?php echo $productImageUrl; ?>" class="img-fluid modalImage">
                                         </div>
                                     </div>
                                     <hr>

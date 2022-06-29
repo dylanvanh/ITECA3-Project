@@ -97,7 +97,7 @@ include('../controllers/cart.php');
                                         $total = $subTotal + $fixedOperationsCost;
                                     }
                                     ?>
-                                    <p>Subtotal : R<?php echo $subTotal ?></p>
+                                    <p class="my-3">Subtotal : R<?php echo $subTotal ?></p>
                                     <p>Operations Cost : <?php echo $fixedOperationsCost ?></p>
                                     <h3>Total : R<?php echo $total ?></h3>
                                     <?php

@@ -14,12 +14,12 @@ include('../controllers/home.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="/ITECA3-Project/include/globalStyles.css" rel="stylesheet" />
     <style>
-
         .modalImage {
             max-width: 100%;
             max-height: 100%;
-            margin-left:1rem;
+            margin-left: 1rem;
         }
+
         .productImage {
             height: 300px;
         }
@@ -121,11 +121,7 @@ include('../controllers/home.php');
         </div>
     </div>
 
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Created by Dylan van Heerden</p>
-        </div>
-    </footer>
+    <?php include('../../include/footer.php'); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
