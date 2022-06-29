@@ -68,13 +68,10 @@ include('../controllers/about.php');
                         </div><img class="img-fluid" src="/ITECA3-Project/assets/baby-in-pool.jpg">
                     </a></div>
             </div>
+        <?php include('../../include/footer.php'); ?>
+
         </div>
     </section>
-
-
-    <?php include('../../include/footer.php'); ?>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 

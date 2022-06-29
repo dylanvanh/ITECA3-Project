@@ -17,10 +17,11 @@ include('../controllers/checkout.php')
 
 <body class="backColor">
 
-    <div class="container text-centre">
-        <h1 class="text-center my-3">Checkout screen</h1>
-        <div class="container py-5">
-            <form method="post" name="placeOrderForm" action="" class="container">
+    <h1 class="text-center my-3">Checkout screen</h1>
+
+    <div class="container py-5 h-100">
+        <form method="post" action="" name="placeOrderForm">
+            <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-dark bg-gradient text-white" style="border-radius: 3rem;">
                         <div class="card-body p-5 text-center">
@@ -30,25 +31,28 @@ include('../controllers/checkout.php')
                                 $total = $subTotal + $fixedOperationsCost;
                             }
                             ?>
-                            <h3>Subtotal : R<?php echo $subTotal ?>
-                                <h3>Operations Cost : R<?php echo $fixedOperationsCost ?> </h3>
-                                <h3>Total : R<?php echo $total ?>
+                            <h4>Subtotal : R<?php echo $subTotal ?></h4>
+                                <h4>Operations Cost : R<?php echo $fixedOperationsCost ?> </h4>
+                                <h2>Total : R<?php echo $total ?></h2>
                                     <div class="location-container">
                                         <label for="location">Collection Location :</label>
-                                        <select name="location" id="location">
+                                        <select name="location" id="location" class="mt-3">
                                             <option value="Durbanville">Durbanville</option>
                                             <option value="Tygervalley">Tygervalley</option>
                                             <option value="Milnerton">Milnerton</option>
                                         </select>
                                     </div>
                                     <input type="hidden" name="totalCost" value="<?php echo $total ?>">
-                                    <button class="btn btn-outline-light btn-lg px-5" type="submit" name="placeOrder">Confirm Order</button>
+                                    <button class="btn btn-outline-success btn-lg mt-3" type="submit" name="placeOrder">Confirm Order</button>
                         </div>
-                    </div>
+                        </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
+        <?php include("../../include/footer.php"); ?>
+
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
