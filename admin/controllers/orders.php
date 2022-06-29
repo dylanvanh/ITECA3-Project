@@ -18,7 +18,6 @@ if (isset($_POST['completeOrder'])) {
     }
 }
 
-
 if (isset($_POST['completeAllOrders'])) {
 
     //create the order
@@ -30,4 +29,3 @@ if (isset($_POST['completeAllOrders'])) {
         echo "Error: " . $completeOrderQuery . "<br>" . mysqli_error($conn);
     }
 }
-?>
