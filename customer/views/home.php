@@ -59,7 +59,6 @@ include('../controllers/home.php');
                                             <p><?php echo $productData['price']; ?></p>
                                             <h3>Description:</h3>
                                             <p><?php echo $productData['description']; ?></p>
-                                            <h3>ID : <?php echo $productData['id']; ?></h3>
                                         </div>
                                         <div class="right">
                                             <img class="modalImage" src="<?php echo $productData['imageUrl']; ?>" alt="">
