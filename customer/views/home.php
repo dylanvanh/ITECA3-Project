@@ -14,6 +14,12 @@ include('../controllers/home.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="/ITECA3-Project/include/globalStyles.css" rel="stylesheet" />
     <style>
+
+        .modalImage {
+            max-width: 100%;
+            max-height: 100%;
+            margin-left:1rem;
+        }
         .productImage {
             height: 300px;
         }
@@ -56,7 +62,7 @@ include('../controllers/home.php');
                                             <h3>ID : <?php echo $productData['id']; ?></h3>
                                         </div>
                                         <div class="right">
-                                            <img class="productImage" src="<?php echo $productData['imageUrl']; ?>" alt="">
+                                            <img class="modalImage" src="<?php echo $productData['imageUrl']; ?>" alt="">
                                         </div>
                                     </div>
                                     <hr class="border-2 border-top border-dark">
