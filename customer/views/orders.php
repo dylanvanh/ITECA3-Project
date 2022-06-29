@@ -83,9 +83,9 @@ include('../controllers/orders.php');
                     <div class='card'>
                         <div class='card-body'>
                             <h5 class='card-title'><?php echo $orderData['date'] ?></h5>
-                            <p class='card-text'><?php echo $orderData['deliveryLocation'] ?></p>
-                            <p class='card-text'><?php echo $orderData['id'] ?></p>
-                            <p class='card-text'>R<?php echo $orderData['totalCost'] ?></p>
+                            <p class='card-text'>Location: <?php echo $orderData['deliveryLocation'] ?></p>
+                            <p class='card-text'>ID: <?php echo $orderData['id'] ?></p>
+                            <p class='card-text'>Total: R<?php echo $orderData['totalCost'] ?></p>
                             <div class='d-flex justify-content-between options'>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal<?php echo $orderData["id"] ?>" data-bs-whatever="@mdo">
                                     <i class="bi bi-view-stacked"></i>
